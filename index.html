@@ -122,6 +122,11 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
 .rrow.zero .rval{color:var(--muted)}
 .rnote{color:var(--muted);font-size:.86rem;margin:12px 0 4px}
 @media (max-width:560px){.rrow{grid-template-columns:1fr;gap:4px}}
+.spot{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:28px;margin-top:22px;align-items:start}
+.spot .body p{margin:0 0 14px;max-width:62ch}
+.spot .facts{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+.ask{margin-top:6px;padding:18px 20px;border-left:5px solid var(--close);background:var(--surface);border-radius:0 10px 10px 0;font-family:"Bricolage Grotesque",sans-serif;font-size:1.25rem;font-weight:700;line-height:1.3;max-width:58ch}
+@media (max-width:860px){.spot{grid-template-columns:1fr}}
 @media (max-width:860px){.mapgrid{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:no-preference){.detail{transition:border-color .2s}}
 </style>
@@ -166,7 +171,9 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 21,
    "retail": 21,
    "services": 21,
-   "bizMile": 742
+   "bizMile": 742,
+   "acres": 3.88,
+   "zoning": "R5"
   },
   {
    "id": "ainsworth",
@@ -205,7 +212,9 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 10,
    "retail": 13,
    "services": 5,
-   "bizMile": 307
+   "bizMile": 307,
+   "acres": 4.07,
+   "zoning": "OS"
   },
   {
    "id": "astor",
@@ -248,7 +257,9 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 2,
    "retail": 3,
    "services": 0,
-   "bizMile": 285
+   "bizMile": 285,
+   "acres": 5.84,
+   "zoning": "R5"
   },
   {
    "id": "beverly-cleary",
@@ -261,7 +272,9 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 5,
    "retail": 10,
    "services": 29,
-   "bizMile": 422
+   "bizMile": 422,
+   "acres": 4.6,
+   "zoning": "R5"
   },
   {
    "id": "boise-eliot",
@@ -317,7 +330,9 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 21,
    "retail": 15,
    "services": 16,
-   "bizMile": 883
+   "bizMile": 883,
+   "acres": 4.83,
+   "zoning": "R5"
   },
   {
    "id": "capitol-hill",
@@ -399,7 +414,9 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 9,
    "retail": 8,
    "services": 9,
-   "bizMile": 321
+   "bizMile": 321,
+   "acres": 7.15,
+   "zoning": "R5"
   },
   {
    "id": "duniway",
@@ -412,7 +429,9 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 0,
    "retail": 0,
    "services": 0,
-   "bizMile": 106
+   "bizMile": 106,
+   "acres": 5.63,
+   "zoning": "R5"
   },
   {
    "id": "faubion",
@@ -490,7 +509,9 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 0,
    "retail": 0,
    "services": 0,
-   "bizMile": 107
+   "bizMile": 107,
+   "acres": 7.2,
+   "zoning": "R7"
   },
   {
    "id": "irvington",
@@ -508,7 +529,9 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 1,
    "retail": 0,
    "services": 1,
-   "bizMile": 408
+   "bizMile": 408,
+   "acres": 4.21,
+   "zoning": "OS/R5"
   },
   {
    "id": "james-john",
@@ -525,7 +548,9 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 39,
    "retail": 15,
    "services": 31,
-   "bizMile": 141
+   "bizMile": 141,
+   "acres": 3.81,
+   "zoning": "CM2/RM2"
   },
   {
    "id": "jason-lee",
@@ -564,7 +589,9 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 9,
    "retail": 14,
    "services": 31,
-   "bizMile": 567
+   "bizMile": 567,
+   "acres": 5.12,
+   "zoning": "OS/R5"
   },
   {
    "id": "laurelhurst",
@@ -607,7 +634,9 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 0,
    "retail": 0,
    "services": 0,
-   "bizMile": 128
+   "bizMile": 128,
+   "acres": 5.63,
+   "zoning": "R5"
   },
   {
    "id": "llewellyn",
@@ -637,7 +666,9 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 1,
    "retail": 0,
    "services": 0,
-   "bizMile": 104
+   "bizMile": 104,
+   "acres": 4.29,
+   "zoning": "R7"
   },
   {
    "id": "markham",
@@ -668,7 +699,9 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 7,
    "retail": 6,
    "services": 4,
-   "bizMile": 374
+   "bizMile": 374,
+   "acres": 5.1,
+   "zoning": "R2.5"
   },
   {
    "id": "peninsula",
@@ -686,7 +719,9 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 0,
    "retail": 0,
    "services": 0,
-   "bizMile": 92
+   "bizMile": 92,
+   "acres": 7.01,
+   "zoning": "R5"
   },
   {
    "id": "richmond",
@@ -712,7 +747,9 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 23,
    "retail": 11,
    "services": 51,
-   "bizMile": 203
+   "bizMile": 203,
+   "acres": 10.39,
+   "zoning": "CM2/OS/R7"
   },
   {
    "id": "rigler",
@@ -738,7 +775,9 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 0,
    "retail": 2,
    "services": 0,
-   "bizMile": 76
+   "bizMile": 76,
+   "acres": 2.84,
+   "zoning": "CM2/RM1"
   },
   {
    "id": "rose-city-park",
@@ -754,7 +793,9 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 7,
    "retail": 2,
    "services": 2,
-   "bizMile": 299
+   "bizMile": 299,
+   "acres": 3.69,
+   "zoning": "R5"
   },
   {
    "id": "sabin",
@@ -771,7 +812,9 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 0,
    "retail": 0,
    "services": 0,
-   "bizMile": 438
+   "bizMile": 438,
+   "acres": 3.63,
+   "zoning": "R5"
   },
   {
    "id": "scott",
@@ -826,7 +869,9 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 0,
    "retail": 0,
    "services": 0,
-   "bizMile": 27
+   "bizMile": 27,
+   "acres": 8.86,
+   "zoning": "R10"
   },
   {
    "id": "vernon",
@@ -865,7 +910,9 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 1,
    "retail": 1,
    "services": 1,
-   "bizMile": 90
+   "bizMile": 90,
+   "acres": 7.21,
+   "zoning": "RM2"
   },
   {
    "id": "woodlawn",
@@ -896,7 +943,9 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 3,
    "retail": 8,
    "services": 4,
-   "bizMile": 205
+   "bizMile": 205,
+   "acres": 5.46,
+   "zoning": "R2.5"
   },
   {
    "id": "woodstock",
@@ -922,7 +971,9 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 55,
    "retail": 46,
    "services": 20,
-   "bizMile": 637
+   "bizMile": 637,
+   "acres": 1.47,
+   "zoning": "OS"
   },
   {
    "id": "sellwood-ms",
@@ -940,10 +991,16 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 19,
    "retail": 24,
    "services": 33,
-   "bizMile": 220
+   "bizMile": 220,
+   "acres": 4.83,
+   "zoning": "R5"
   }
  ],
- "released": true
+ "released": true,
+ "spotId": "james-john",
+ "spotTitle": "What happens to the James John site?",
+ "spotBody": "James John is the only school on the closure list zoned for anything denser than houses. Part of the site is zoned CM2 (commercial mixed use), which allows apartment buildings with shops on the ground floor, and the rest is RM2 (multi-dwelling), which allows apartment buildings.\n\nThe other 13 schools proposed for closure sit on single-dwelling or open space zoning. That makes James John the site most likely to attract a developer if the district sells it, and it sits in the middle of one of the most business-connected school neighborhoods in Portland.",
+ "spotQuestion": "If James John closes, will the district keep the building, lease it, or sell it? Will St. Johns have a say in what replaces it?"
 }</script>
 <script id="app">
 (function(){
@@ -1098,6 +1155,25 @@ function rankHtml(){
   return h;
 }
 
+/* ---------- site spotlight ---------- */
+function spotHtml(){
+  var x = state.spotId && byId(state.spotId);
+  if (!x || !state.spotTitle) return '';
+  var biz = num(x.businesses), counted = state.schools.filter(function(s){ return num(s.businesses) != null; });
+  var rank = biz != null ? 1 + counted.filter(function(s){ return num(s.businesses) > biz; }).length : null;
+  var h = '<section class="band"><div class="wrap"><h2>' + esc(state.spotTitle) + '</h2><div class="spot"><div class="body">';
+  String(state.spotBody || '').split(/\n\s*\n/).forEach(function(par){ if (par.trim()) h += '<p>' + esc(par.trim()) + '</p>'; });
+  if (state.spotQuestion) h += '<p class="ask">' + esc(state.spotQuestion) + '</p>';
+  h += '</div><div class="facts">';
+  h += '<div class="fact"><b>' + (x.zoning ? esc(x.zoning) : '–') + '</b><small>zoning</small></div>';
+  h += '<div class="fact"><b>' + (num(x.acres) == null ? '–' : num(x.acres)) + '</b><small>acres</small></div>';
+  h += '<div class="fact"><b>' + (biz == null ? '–' : biz) + '</b><small>businesses within \u00bc mile</small></div>';
+  h += '<div class="fact"><b>' + (rank ? '#' + rank : '–') + '</b><small>of ' + counted.length + ' schools for nearby businesses</small></div>';
+  if (money(x.landValue)) h += '<div class="fact"><b>' + money(x.landValue) + '</b><small>assessed land value</small></div>';
+  h += '</div></div></div></section>';
+  return h;
+}
+
 /* ---------- table ---------- */
 function tableHtml(){
   var counts = { all: state.schools.length, closing: 0, open: 0, unlisted: 0 };
@@ -1124,7 +1200,7 @@ var FIELDS = [['name','School','text'],['scenarios','Closes in','scen'],['receiv
 function editorHtml(){
   var d = draft;
   var h = '<div class="editor"><h2>Edit page data</h2><p class="msg">Only you can see this panel. Changes go live for everyone when you publish.</p>';
-  [['title','Headline'],['intro','Introduction'],['notice','Status note'],['method','How businesses were counted'],['landMethod','How land and zoning were measured'],['contact','Contact or call to action'],].forEach(function(f){
+  [['title','Headline'],['intro','Introduction'],['notice','Status note'],['method','How businesses were counted'],['landMethod','How land and zoning were measured'],['contact','Contact or call to action'],['spotTitle','Spotlight headline'],['spotBody','Spotlight text (blank line between paragraphs)'],['spotQuestion','Spotlight question for the district'],].forEach(function(f){
     h += '<div class="row"><label for="ed-' + f[0] + '">' + f[1] + '</label>' + (f[0] === 'title'
       ? '<input id="ed-' + f[0] + '" data-g="' + f[0] + '" value="' + esc(d[f[0]]) + '">'
       : '<textarea id="ed-' + f[0] + '" data-g="' + f[0] + '">' + esc(d[f[0]]) + '</textarea>') + '</div>';
@@ -1163,7 +1239,7 @@ function render(){
     '<div class="legend"><span><i class="sw closing"></i>Proposed to close</span><span><i class="sw open"></i>Staying open</span>' + (state.released ? '' : '<span><i class="sw unlisted"></i>Not yet announced</span>') + '<span>Map is schematic; locations are approximate.</span></div></div>' +
     detailHtml() + '</div></div>';
   h += '<section class="band"><div class="wrap"><h2>Some closures would take a business district\u2019s anchor</h2><p class="sub">The schools proposed to close in Scenario ' + scen + ', ranked by how many businesses surround them.</p>' + rankHtml() + '</div></section>';
-  h += '<section class="band"><div class="wrap"><h2>The land the district would give up, and the land it would keep</h2>' + compareHtml() + '</div></section>';
+  h += spotHtml();
   h += '<section class="band"><div class="wrap"><h2>Every school we\u2019re tracking</h2><p class="sub">Select a row to see it on the map.</p>' + tableHtml() + '</div></section>';
   h += '<section class="band"><div class="wrap"><h2>How these numbers were gathered</h2><div class="method"><div><h3>Businesses around each school</h3><p>' + esc(state.method) + '</p></div><div><h3>Land value and zoning</h3><p>' + esc(state.landMethod) + '</p></div></div></div></section>';
   h += '<footer><div class="wrap">';
