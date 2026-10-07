@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="description" content="How many businesses surround each Portland Public Schools school proposed for closure, and why some closures cost a neighborhood far more than others.">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>What school closures take from Portland neighborhoods</title>
+<title>Not every school closure costs a neighborhood the same</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -87,7 +87,7 @@ section.band > .wrap > p.sub{color:var(--muted);max-width:64ch;margin:10px 0 0}
 .filters button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;cursor:pointer;font-size:.92rem}
 .filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .tablebox{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:14px}
-table{border-collapse:collapse;width:100%;min-width:640px;font-size:.95rem}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:.95rem}
 th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line)}
 th{font-weight:600;color:var(--muted);font-size:.86rem}
 td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
@@ -135,10 +135,9 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
 <div id="root"></div>
 <script type="application/json" id="data">{
  "title": "Not every school closure costs a neighborhood the same",
- "intro": "Portland Public Schools has proposed closing up to 14 schools. Some sit on quiet residential streets. Others sit in the middle of busy neighborhood business districts, where dozens of locally owned shops, cafes, and services see school families every day. The district's plan treats them all the same. This page shows the difference: how many businesses surround each school on the list, and what the land the district would give up is worth.",
+ "intro": "Portland Public Schools has proposed closing up to 14 schools. A school is more than a building: it brings hundreds of families into a neighborhood every school day, filling cafes at drop-off, shops at pickup, and restaurants on event nights. When a school sits in the middle of a business district, closing it pulls that daily life off the street, and the locally owned businesses that depend on it feel the loss first. The district's plan doesn't account for this. This page shows which closures would hit their communities hardest.",
  "notice": "On October 5, 2026, PPS released two scenarios: Scenario A would close 14 schools and Scenario B would close 11. The school board is expected to vote in December.",
  "method": "Businesses within a quarter mile (about a 5-minute walk) are the ones most directly affected: they see school families at drop-off, pickup, and evening events. The one-mile count is shown for wider context. Business lists come from OpenStreetMap, checked by walking each block within a quarter mile. A business counts as locally owned if it is not part of a regional or national chain. Survey results come from a short questionnaire given in person to owners and managers near each school.",
- "landMethod": "Land value is the Multnomah County assessor's real market value for the land only (not buildings), from PortlandMaps. Zoning is the base zone shown on PortlandMaps. School properties are tax-exempt, so some assessor values may be missing or out of date.",
  "contact": "",
  "updated": "October 6, 2026",
  "sources": [
@@ -153,10 +152,6 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
   {
    "label": "Willamette Week: PPS releases two school closure scenarios (Oct 5, 2026)",
    "url": "https://www.wweek.com/news/schools/2026/10/05/portland-public-schools-releases-two-school-closure-scenarios-to-school-board/"
-  },
-  {
-   "label": "PortlandMaps: zoning and assessor data",
-   "url": "https://www.portlandmaps.com/"
   }
  ],
  "schools": [
@@ -171,9 +166,7 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 21,
    "retail": 21,
    "services": 21,
-   "bizMile": 742,
-   "acres": 3.88,
-   "zoning": "R5"
+   "bizMile": 742
   },
   {
    "id": "ainsworth",
@@ -212,9 +205,7 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 10,
    "retail": 13,
    "services": 5,
-   "bizMile": 307,
-   "acres": 4.07,
-   "zoning": "OS"
+   "bizMile": 307
   },
   {
    "id": "astor",
@@ -257,9 +248,7 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 2,
    "retail": 3,
    "services": 0,
-   "bizMile": 285,
-   "acres": 5.84,
-   "zoning": "R5"
+   "bizMile": 285
   },
   {
    "id": "beverly-cleary",
@@ -272,9 +261,7 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 5,
    "retail": 10,
    "services": 29,
-   "bizMile": 422,
-   "acres": 4.6,
-   "zoning": "R5"
+   "bizMile": 422
   },
   {
    "id": "boise-eliot",
@@ -330,9 +317,7 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 21,
    "retail": 15,
    "services": 16,
-   "bizMile": 883,
-   "acres": 4.83,
-   "zoning": "R5"
+   "bizMile": 883
   },
   {
    "id": "capitol-hill",
@@ -414,9 +399,7 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 9,
    "retail": 8,
    "services": 9,
-   "bizMile": 321,
-   "acres": 7.15,
-   "zoning": "R5"
+   "bizMile": 321
   },
   {
    "id": "duniway",
@@ -429,9 +412,7 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 0,
    "retail": 0,
    "services": 0,
-   "bizMile": 106,
-   "acres": 5.63,
-   "zoning": "R5"
+   "bizMile": 106
   },
   {
    "id": "faubion",
@@ -509,9 +490,7 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 0,
    "retail": 0,
    "services": 0,
-   "bizMile": 107,
-   "acres": 7.2,
-   "zoning": "R7"
+   "bizMile": 107
   },
   {
    "id": "irvington",
@@ -529,9 +508,7 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 1,
    "retail": 0,
    "services": 1,
-   "bizMile": 408,
-   "acres": 4.21,
-   "zoning": "OS/R5"
+   "bizMile": 408
   },
   {
    "id": "james-john",
@@ -548,9 +525,7 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 39,
    "retail": 15,
    "services": 31,
-   "bizMile": 141,
-   "acres": 3.81,
-   "zoning": "CM2/RM2"
+   "bizMile": 141
   },
   {
    "id": "jason-lee",
@@ -589,9 +564,7 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 9,
    "retail": 14,
    "services": 31,
-   "bizMile": 567,
-   "acres": 5.12,
-   "zoning": "OS/R5"
+   "bizMile": 567
   },
   {
    "id": "laurelhurst",
@@ -634,9 +607,7 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 0,
    "retail": 0,
    "services": 0,
-   "bizMile": 128,
-   "acres": 5.63,
-   "zoning": "R5"
+   "bizMile": 128
   },
   {
    "id": "llewellyn",
@@ -666,9 +637,7 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 1,
    "retail": 0,
    "services": 0,
-   "bizMile": 104,
-   "acres": 4.29,
-   "zoning": "R7"
+   "bizMile": 104
   },
   {
    "id": "markham",
@@ -699,9 +668,7 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 7,
    "retail": 6,
    "services": 4,
-   "bizMile": 374,
-   "acres": 5.1,
-   "zoning": "R2.5"
+   "bizMile": 374
   },
   {
    "id": "peninsula",
@@ -719,9 +686,7 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 0,
    "retail": 0,
    "services": 0,
-   "bizMile": 92,
-   "acres": 7.01,
-   "zoning": "R5"
+   "bizMile": 92
   },
   {
    "id": "richmond",
@@ -747,9 +712,7 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 23,
    "retail": 11,
    "services": 51,
-   "bizMile": 203,
-   "acres": 10.39,
-   "zoning": "CM2/OS/R7"
+   "bizMile": 203
   },
   {
    "id": "rigler",
@@ -775,9 +738,7 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 0,
    "retail": 2,
    "services": 0,
-   "bizMile": 76,
-   "acres": 2.84,
-   "zoning": "CM2/RM1"
+   "bizMile": 76
   },
   {
    "id": "rose-city-park",
@@ -793,9 +754,7 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 7,
    "retail": 2,
    "services": 2,
-   "bizMile": 299,
-   "acres": 3.69,
-   "zoning": "R5"
+   "bizMile": 299
   },
   {
    "id": "sabin",
@@ -812,9 +771,7 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 0,
    "retail": 0,
    "services": 0,
-   "bizMile": 438,
-   "acres": 3.63,
-   "zoning": "R5"
+   "bizMile": 438
   },
   {
    "id": "scott",
@@ -869,9 +826,7 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 0,
    "retail": 0,
    "services": 0,
-   "bizMile": 27,
-   "acres": 8.86,
-   "zoning": "R10"
+   "bizMile": 27
   },
   {
    "id": "vernon",
@@ -910,9 +865,7 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 1,
    "retail": 1,
    "services": 1,
-   "bizMile": 90,
-   "acres": 7.21,
-   "zoning": "RM2"
+   "bizMile": 90
   },
   {
    "id": "woodlawn",
@@ -943,9 +896,7 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 3,
    "retail": 8,
    "services": 4,
-   "bizMile": 205,
-   "acres": 5.46,
-   "zoning": "R2.5"
+   "bizMile": 205
   },
   {
    "id": "woodstock",
@@ -971,9 +922,7 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 55,
    "retail": 46,
    "services": 20,
-   "bizMile": 637,
-   "acres": 1.47,
-   "zoning": "OS"
+   "bizMile": 637
   },
   {
    "id": "sellwood-ms",
@@ -991,16 +940,10 @@ footer ul{padding-left:1.1em;margin:8px 0 0}
    "food": 19,
    "retail": 24,
    "services": 33,
-   "bizMile": 220,
-   "acres": 4.83,
-   "zoning": "R5"
+   "bizMile": 220
   }
  ],
- "released": true,
- "spotId": "james-john",
- "spotTitle": "What happens to the James John site?",
- "spotBody": "James John is the only school on the closure list zoned for anything denser than houses. Part of the site is zoned CM2 (commercial mixed use), which allows apartment buildings with shops on the ground floor, and the rest is RM2 (multi-dwelling), which allows apartment buildings.\n\nThe other 13 schools proposed for closure sit on single-dwelling or open space zoning. That makes James John the site most likely to attract a developer if the district sells it, and it sits in the middle of one of the most business-connected school neighborhoods in Portland.",
- "spotQuestion": "If James John closes, will the district keep the building, lease it, or sell it? Will St. Johns have a say in what replaces it?"
+ "released": true
 }</script>
 <script id="app">
 (function(){
@@ -1018,7 +961,6 @@ var LABEL = { closing: 'Proposed to close', open: 'Staying open', unlisted: 'Not
 function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 function num(v){ if (v === null || v === undefined || v === '' || isNaN(+v)) return null; return +v; }
 function money(v){ v = num(v); if (v == null) return null; if (v >= 1e6) return '$' + (v/1e6).toFixed(v >= 1e7 ? 0 : 1) + 'M'; if (v >= 1e3) return '$' + Math.round(v/1e3) + 'K'; return '$' + Math.round(v); }
-function isCommercial(z){ z = String(z || '').toUpperCase().trim(); return /^(CM|CE|CX|CI|CR|EG|EX|RM|RX)/.test(z); }
 function stat(x){ if (state.released) return (x.scenarios || []).indexOf(scen) >= 0 ? 'closing' : 'open'; return LABEL[x.status] ? x.status : 'unlisted'; }
 function scenText(x){ var s = x.scenarios || []; if (s.length === 2) return 'Both scenarios'; if (s.length === 1) return 'Scenario ' + s[0] + ' only'; return 'Neither scenario'; }
 function scenCount(k){ return state.schools.filter(function(x){ return (x.scenarios || []).indexOf(k) >= 0; }).length; }
@@ -1061,7 +1003,7 @@ function detailHtml(){
     return '<div class="detail"><h2>Pick a school</h2><p class="empty">Select any dot on the map, or a row in the table below, to see the businesses around that school and the value of its land.</p></div>';
   }
   var st = stat(x);
-  var biz = num(x.businesses), lv = money(x.landValue), ac = num(x.acres);
+  var biz = num(x.businesses);
   var h = '<div class="detail" aria-live="polite"><h2>' + esc(x.name) + '</h2>';
   h += '<span class="chip ' + st + '">' + LABEL[st] + (state.released ? ' in Scenario ' + scen : '') + '</span>';
   if (state.released) h += '<p style="margin:10px 0 0;color:var(--muted)">Proposed for closure in: ' + scenText(x).toLowerCase() + '.' + (x.receiving ? ' Students would move to ' + esc(x.receiving) + '.' : '') + '</p>';
@@ -1071,67 +1013,38 @@ function detailHtml(){
   h += '<div class="fact"><b>' + (num(x.bizMile) == null ? '–' : num(x.bizMile)) + '</b><small>businesses within 1 mile</small></div>';
   h += '<div class="fact"><b>' + (num(x.independent) == null || !biz ? '–' : Math.round(num(x.independent) / biz * 100) + '%') + '</b><small>locally owned (¼ mile)</small></div>';
   h += '<div class="fact"><b>' + (num(x.surveyed) == null ? '–' : (num(x.expectLoss) == null ? 0 : num(x.expectLoss)) + ' of ' + num(x.surveyed)) + '</b><small>owners surveyed who expect to lose sales</small></div>';
-  h += '<div class="fact"><b>' + (lv || '–') + '</b><small>assessed land value</small></div>';
-  h += '<div class="fact"><b>' + (ac == null ? '–' : ac) + '</b><small>acres</small></div>';
-  h += '<div class="fact"><b>' + (x.zoning ? esc(x.zoning) : '–') + '</b><small>zoning</small></div>';
   h += '</div>';
   var mix = [['food','food and drink'],['retail','retail'],['services','services']].filter(function(k){ return num(x[k[0]]) != null; }).map(function(k){ return num(x[k[0]]) + ' ' + k[1]; });
   if (mix.length) h += '<p style="margin:16px 0 0;color:var(--muted)">Within ¼ mile: ' + mix.join(', ') + '.</p>';
   if (biz) {
     var counted = state.schools.filter(function(s){ return num(s.businesses) != null; });
-    var rank = 1 + counted.filter(function(s){ return num(s.businesses) > biz; }).length;
-    if (counted.length > 5) h += '<p style="margin:10px 0 0;color:var(--muted)">Ranks #' + rank + ' of ' + counted.length + ' schools for businesses within \u00bc mile.</p>';
+    var rc = rankOf(x, counted);
+    var line = '';
+    if (stat(x) === 'closing') {
+      var closing = counted.filter(function(s){ return stat(s) === 'closing'; });
+      var rl = rankOf(x, closing);
+      line = 'Ranks ' + rankText(rl) + ' of the ' + closing.length + ' schools proposed to close in Scenario ' + scen + ', and ' + rankText(rc) + ' of all ' + rc.n + ' schools';
+    } else {
+      line = 'Ranks ' + rankText(rc) + ' of ' + rc.n + ' schools';
+    }
+    line += ' for businesses within \u00bc mile';
+    if (rc.rank <= 5 && rc.above.length) line += ', behind only ' + names(rc.above);
+    if (rc.ties.length) line += ' (tied with ' + names(rc.ties) + ')';
+    if (counted.length > 5) h += '<p style="margin:10px 0 0;color:var(--muted)">' + esc(line) + '.</p>';
   }
   if (x.story) h += '<p class="story">' + esc(x.story) + '</p>';
-  if (biz == null && !lv && !x.zoning) h += '<p class="empty" style="margin-top:18px">Data for this school hasn\u2019t been added yet.</p>';
+  if (biz == null) h += '<p class="empty" style="margin-top:18px">Data for this school hasn\u2019t been added yet.</p>';
   return h + '</div>';
 }
 
-/* ---------- comparison ---------- */
-function groupStats(st){
-  var g = state.schools.filter(function(x){ return stat(x) === st; });
-  var biz = g.map(function(x){ return num(x.businesses); }).filter(function(v){ return v != null; });
-  var land = g.map(function(x){ return num(x.landValue); }).filter(function(v){ return v != null; });
-  var per = g.filter(function(x){ return num(x.landValue) != null && num(x.acres); }).map(function(x){ return num(x.landValue) / num(x.acres); });
-  var zoned = g.filter(function(x){ return x.zoning; });
-  var avg = function(a){ return a.length ? a.reduce(function(s, v){ return s + v; }, 0) / a.length : null; };
-  return {
-    n: g.length,
-    biz: avg(biz), bizN: biz.length, bizTotal: biz.reduce(function(s, v){ return s + v; }, 0),
-    mile: avg(g.map(function(x){ return num(x.bizMile); }).filter(function(v){ return v != null; })), mileN: g.filter(function(x){ return num(x.bizMile) != null; }).length,
-    ind: (function(){ var r = g.filter(function(x){ return num(x.independent) != null && num(x.businesses); }); var a = r.reduce(function(s, x){ return s + num(x.independent); }, 0), b = r.reduce(function(s, x){ return s + num(x.businesses); }, 0); return b ? a / b * 100 : null; })(),
-    indN: g.filter(function(x){ return num(x.independent) != null && num(x.businesses); }).length,
-    land: avg(land), landN: land.length,
-    per: avg(per), perN: per.length,
-    com: zoned.length ? zoned.filter(function(x){ return isCommercial(x.zoning); }).length / zoned.length * 100 : null, comN: zoned.length
-  };
+function rankOf(x, pool){
+  var b = num(x.businesses);
+  var above = pool.filter(function(s){ return num(s.businesses) > b; });
+  var ties = pool.filter(function(s){ return s.id !== x.id && num(s.businesses) === b; });
+  return { rank: 1 + above.length, above: above, ties: ties, n: pool.length };
 }
-function metric(title, a, b, key, fmt, nkey){
-  var va = a[key], vb = b[key];
-  if (va == null && vb == null) return '<div class="metric"><h3>' + title + '</h3><p class="empty">No data added yet.</p></div>';
-  var max = Math.max(va || 0, vb || 0) || 1;
-  function bar(name, v, cls){
-    var w = v == null ? 0 : Math.max(4, v / max * 100);
-    return '<div class="bar"><span>' + name + '</span><div class="track"><div class="fill ' + cls + '" style="width:' + w + '%"></div><span class="val">' + (v == null ? 'No data' : fmt(v)) + '</span></div></div>';
-  }
-  return '<div class="metric"><h3>' + title + '</h3>' + bar('Closing', va, 'closing') + bar('Staying open', vb, 'open') +
-    '<p class="cov">Based on ' + a[nkey] + ' of ' + a.n + ' closing and ' + b[nkey] + ' of ' + b.n + ' remaining schools with data.</p></div>';
-}
-function compareHtml(){
-  var a = groupStats('closing'), b = groupStats('open');
-  if (!a.n) {
-    return '<div class="placeholder"><h3 style="font-size:1.25rem;margin-bottom:8px">Waiting on the district\u2019s list</h3><p style="margin:0;color:var(--muted)">Once schools are named for closure, this section compares them with the schools that stay open: how many businesses surround each, what the land is worth, and how much of it is zoned for apartments, commercial, or mixed-use development.</p></div>';
-  }
-  if (!a.landN && !a.comN && !b.landN && !b.comN) {
-    return '<div class="placeholder"><h3 style="font-size:1.25rem;margin-bottom:8px">Land data is being gathered</h3><p style="margin:0;color:var(--muted)">This section will compare the schools proposed to close with the schools staying open: what the land is worth, and how much of it is zoned for apartments, commercial, or mixed-use development.</p></div>';
-  }
-  var h = '<div class="compare">';
-  h += metric('Average land value', a, b, 'land', money, 'landN');
-  h += metric('Land value per acre', a, b, 'per', money, 'perN');
-  h += metric('Share zoned for apartments, commercial, or mixed use', a, b, 'com', function(v){ return Math.round(v) + '%'; }, 'comN');
-  return h + '</div>';
-}
-
+function rankText(r){ return (r.ties.length ? 'tied for #' : '#') + r.rank; }
+function names(list){ var a = list.map(function(s){ return s.name; }); return a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' and ' + a[a.length - 1]; }
 /* ---------- ranked closures ---------- */
 function rankHtml(){
   var g = state.schools.filter(function(x){ return stat(x) === 'closing'; });
@@ -1143,6 +1056,14 @@ function rankHtml(){
   var total = withData.reduce(function(s, x){ return s + num(x.businesses); }, 0);
   var busy = withData.filter(function(x){ return num(x.businesses) >= 50; }).length;
   var h = '<p class="sub" style="font-size:1.15rem;color:var(--ink);margin-top:18px"><strong>' + total + ' businesses</strong> sit within a quarter mile of the schools proposed to close in Scenario ' + scen + '. ' + (busy ? busy + ' of those schools anchor a business district; ' + (withData.length - busy) + ' are in mostly residential areas.' : '') + '</p>';
+  var top = withData[0], all = state.schools.filter(function(s){ return num(s.businesses) != null; });
+  if (top && num(top.businesses) > 0 && (withData.length < 2 || num(withData[1].businesses) < num(top.businesses))) {
+    var tr = rankOf(top, all);
+    var s2 = esc(top.name) + ' has more businesses nearby than any other school proposed to close. Across all ' + tr.n + ' schools we counted, it ranks ' + rankText(tr);
+    if (tr.above.length) s2 += ', second only to ' + esc(names(tr.above));
+    if (tr.ties.length) s2 += ' (tied with ' + esc(names(tr.ties)) + ')';
+    h += '<p class="sub" style="margin-top:8px">' + s2 + '.</p>';
+  }
   h += '<div class="rank">';
   withData.forEach(function(x){
     var b = num(x.businesses), ind = num(x.independent);
@@ -1152,25 +1073,6 @@ function rankHtml(){
   h += '</div>';
   var missing = g.length - withData.length;
   h += '<p class="rnote">Businesses within a quarter mile (about a 5-minute walk) of each school. Select a school for details.' + (missing ? ' ' + missing + ' school' + (missing > 1 ? 's' : '') + ' not yet counted.' : '') + '</p>';
-  return h;
-}
-
-/* ---------- site spotlight ---------- */
-function spotHtml(){
-  var x = state.spotId && byId(state.spotId);
-  if (!x || !state.spotTitle) return '';
-  var biz = num(x.businesses), counted = state.schools.filter(function(s){ return num(s.businesses) != null; });
-  var rank = biz != null ? 1 + counted.filter(function(s){ return num(s.businesses) > biz; }).length : null;
-  var h = '<section class="band"><div class="wrap"><h2>' + esc(state.spotTitle) + '</h2><div class="spot"><div class="body">';
-  String(state.spotBody || '').split(/\n\s*\n/).forEach(function(par){ if (par.trim()) h += '<p>' + esc(par.trim()) + '</p>'; });
-  if (state.spotQuestion) h += '<p class="ask">' + esc(state.spotQuestion) + '</p>';
-  h += '</div><div class="facts">';
-  h += '<div class="fact"><b>' + (x.zoning ? esc(x.zoning) : '–') + '</b><small>zoning</small></div>';
-  h += '<div class="fact"><b>' + (num(x.acres) == null ? '–' : num(x.acres)) + '</b><small>acres</small></div>';
-  h += '<div class="fact"><b>' + (biz == null ? '–' : biz) + '</b><small>businesses within \u00bc mile</small></div>';
-  h += '<div class="fact"><b>' + (rank ? '#' + rank : '–') + '</b><small>of ' + counted.length + ' schools for nearby businesses</small></div>';
-  if (money(x.landValue)) h += '<div class="fact"><b>' + money(x.landValue) + '</b><small>assessed land value</small></div>';
-  h += '</div></div></div></section>';
   return h;
 }
 
@@ -1185,22 +1087,22 @@ function tableHtml(){
   f += '</div>';
   var rows = state.schools.filter(function(x){ return filter === 'all' || stat(x) === filter; })
     .slice().sort(function(a, b){ return (b.scenarios || []).length - (a.scenarios || []).length || a.name.localeCompare(b.name); });
-  var t = '<div class="tablebox"><table><thead><tr><th>School</th><th>Status in Scenario ' + scen + '</th>' + (state.released ? '<th>Closes under</th>' : '') + '<th class="n">Within ¼ mi</th><th class="n">Within 1 mi</th><th class="n">Land value</th><th class="n">Acres</th><th>Zoning</th></tr></thead><tbody>';
+  var t = '<div class="tablebox"><table><thead><tr><th>School</th><th>Status in Scenario ' + scen + '</th>' + (state.released ? '<th>Closes under</th>' : '') + '<th class="n">Within ¼ mi</th><th class="n">Within 1 mi</th></tr></thead><tbody>';
   rows.forEach(function(x){
     var st = stat(x);
     t += '<tr data-id="' + esc(x.id) + '" tabindex="0"><td><strong>' + esc(x.name) + '</strong></td><td><span class="sw ' + st + '" style="vertical-align:-1px;margin-right:6px"></span>' + LABEL[st] + '</td>' + (state.released ? '<td>' + ((x.scenarios || []).length ? scenText(x) : '–') + '</td>' : '') +
-      '<td class="n">' + (num(x.businesses) == null ? '–' : num(x.businesses)) + '</td><td class="n">' + (num(x.bizMile) == null ? '–' : num(x.bizMile)) + '</td><td class="n">' + (money(x.landValue) || '–') + '</td><td class="n">' + (num(x.acres) == null ? '–' : num(x.acres)) + '</td><td>' + (x.zoning ? esc(x.zoning) : '–') + '</td></tr>';
+      '<td class="n">' + (num(x.businesses) == null ? '–' : num(x.businesses)) + '</td><td class="n">' + (num(x.bizMile) == null ? '–' : num(x.bizMile)) + '</td></tr>';
   });
-  if (!rows.length) t += '<tr><td colspan="8" class="empty">No schools in this group yet.</td></tr>';
+  if (!rows.length) t += '<tr><td colspan="5" class="empty">No schools in this group yet.</td></tr>';
   return f + t + '</tbody></table></div>';
 }
 
 /* ---------- editor (owner only) ---------- */
-var FIELDS = [['name','School','text'],['scenarios','Closes in','scen'],['receiving','Students move to','text'],['businesses','Businesses ¼ mi','number'],['independent','Locally owned ¼ mi','number'],['food','Food & drink','number'],['retail','Retail','number'],['services','Services','number'],['bizMile','Businesses 1 mi','number'],['surveyed','Owners surveyed','number'],['expectLoss','Expect lost sales','number'],['landValue','Land value ($)','number'],['acres','Acres','number'],['zoning','Zoning','text'],['address','Address','text'],['lat','Lat','number'],['lon','Lon','number'],['story','Quote or note','text']];
+var FIELDS = [['name','School','text'],['scenarios','Closes in','scen'],['receiving','Students move to','text'],['businesses','Businesses ¼ mi','number'],['independent','Locally owned ¼ mi','number'],['food','Food & drink','number'],['retail','Retail','number'],['services','Services','number'],['bizMile','Businesses 1 mi','number'],['surveyed','Owners surveyed','number'],['expectLoss','Expect lost sales','number'],['address','Address','text'],['lat','Lat','number'],['lon','Lon','number'],['story','Quote or note','text']];
 function editorHtml(){
   var d = draft;
   var h = '<div class="editor"><h2>Edit page data</h2><p class="msg">Only you can see this panel. Changes go live for everyone when you publish.</p>';
-  [['title','Headline'],['intro','Introduction'],['notice','Status note'],['method','How businesses were counted'],['landMethod','How land and zoning were measured'],['contact','Contact or call to action'],['spotTitle','Spotlight headline'],['spotBody','Spotlight text (blank line between paragraphs)'],['spotQuestion','Spotlight question for the district'],].forEach(function(f){
+  [['title','Headline'],['intro','Introduction'],['notice','Status note'],['method','How businesses were counted'],['contact','Contact or call to action'],].forEach(function(f){
     h += '<div class="row"><label for="ed-' + f[0] + '">' + f[1] + '</label>' + (f[0] === 'title'
       ? '<input id="ed-' + f[0] + '" data-g="' + f[0] + '" value="' + esc(d[f[0]]) + '">'
       : '<textarea id="ed-' + f[0] + '" data-g="' + f[0] + '">' + esc(d[f[0]]) + '</textarea>') + '</div>';
@@ -1239,9 +1141,8 @@ function render(){
     '<div class="legend"><span><i class="sw closing"></i>Proposed to close</span><span><i class="sw open"></i>Staying open</span>' + (state.released ? '' : '<span><i class="sw unlisted"></i>Not yet announced</span>') + '<span>Map is schematic; locations are approximate.</span></div></div>' +
     detailHtml() + '</div></div>';
   h += '<section class="band"><div class="wrap"><h2>Some closures would take a business district\u2019s anchor</h2><p class="sub">The schools proposed to close in Scenario ' + scen + ', ranked by how many businesses surround them.</p>' + rankHtml() + '</div></section>';
-  h += spotHtml();
   h += '<section class="band"><div class="wrap"><h2>Every school we\u2019re tracking</h2><p class="sub">Select a row to see it on the map.</p>' + tableHtml() + '</div></section>';
-  h += '<section class="band"><div class="wrap"><h2>How these numbers were gathered</h2><div class="method"><div><h3>Businesses around each school</h3><p>' + esc(state.method) + '</p></div><div><h3>Land value and zoning</h3><p>' + esc(state.landMethod) + '</p></div></div></div></section>';
+  h += '<section class="band"><div class="wrap"><h2>How these numbers were gathered</h2><div class="method"><div><h3>Businesses around each school</h3><p>' + esc(state.method) + '</p></div></div></div></section>';
   h += '<footer><div class="wrap">';
   if (state.contact) h += '<p style="color:var(--ink);font-size:1.05rem;white-space:pre-line">' + esc(state.contact) + '</p>';
   if (state.updated) h += '<p>Last updated ' + esc(state.updated) + '.</p>';
@@ -1280,7 +1181,7 @@ root.addEventListener('input', function(e){
   if (t.hasAttribute('data-g')) draft[t.getAttribute('data-g')] = t.value;
   if (t.hasAttribute('data-i') && t.hasAttribute('data-k')) {
     var k = t.getAttribute('data-k'), v = t.value;
-    if (['businesses','bizMile','independent','food','retail','services','surveyed','expectLoss','landValue','acres','lat','lon'].indexOf(k) >= 0) v = v === '' ? null : +v;
+    if (['businesses','bizMile','independent','food','retail','services','surveyed','expectLoss','lat','lon'].indexOf(k) >= 0) v = v === '' ? null : +v;
     draft.schools[+t.getAttribute('data-i')][k] = v;
   }
 });
