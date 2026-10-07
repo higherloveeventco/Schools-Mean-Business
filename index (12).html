@@ -1,0 +1,1267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="How many businesses surround each Portland Public Schools school proposed for closure, and why some closures cost a neighborhood far more than others.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>What school closures take from Portland neighborhoods</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style id="s">
+:root{
+  --bg:#F3F5F8; --surface:#FFFFFF; --ink:#14213D; --muted:#55627A; --line:#D5DBE3;
+  --close:#E9A300; --close-ink:#3D2A00; --open:#2A7F7A; --unl:#FFFFFF; --water:#CADCEA; --land:#E9EDF2;
+  --focus:#1D5FD1;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1625; --surface:#162135; --ink:#E7ECF4; --muted:#9BA9BF; --line:#2A3852;
+    --close:#F2B705; --close-ink:#2A1D00; --open:#4DB3AC; --unl:#162135; --water:#1B3350; --land:#121C2E; --focus:#7FB0FF;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1625; --surface:#162135; --ink:#E7ECF4; --muted:#9BA9BF; --line:#2A3852;
+  --close:#F2B705; --close-ink:#2A1D00; --open:#4DB3AC; --unl:#162135; --water:#1B3350; --land:#121C2E; --focus:#7FB0FF;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","Public Sans",system-ui,sans-serif;line-height:1.1;margin:0}
+a{color:inherit;text-underline-offset:3px}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+header.top{padding:40px 0 24px}
+.toprow{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+h1{font-size:clamp(2.1rem,5.4vw,3.9rem);font-weight:800;max-width:15ch;letter-spacing:-.015em}
+.lede{max-width:62ch;color:var(--muted);font-size:1.12rem;margin:18px 0 0}
+.notice{display:inline-flex;gap:10px;align-items:center;margin-top:22px;padding:8px 14px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:.95rem}
+.notice i{width:10px;height:10px;border-radius:50%;background:var(--close);flex:none}
+.btn{border:1px solid var(--ink);background:transparent;border-radius:8px;padding:9px 16px;cursor:pointer;font-weight:600}
+.btn.primary{background:var(--ink);color:var(--bg)}
+.btn:disabled{opacity:.5;cursor:default}
+.mapgrid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:24px;align-items:start;margin-top:12px}
+.mapbox{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px;position:relative}
+.mapbox svg{display:block;width:100%;height:auto}
+.dot{cursor:pointer}
+.dot circle.p{stroke:var(--ink);stroke-width:2}
+.dot.closing circle.p{fill:var(--close)}
+.dot.open circle.p{fill:var(--open)}
+.dot.unlisted circle.p{fill:var(--unl)}
+.dot circle.ring{fill:none;stroke:var(--ink);stroke-width:2.5;opacity:0}
+.dot.sel circle.ring{opacity:1}
+.dot:focus{outline:none}
+.dot:focus-visible circle.ring{opacity:1;stroke:var(--focus)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.88rem;color:var(--muted);padding:8px 6px 2px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:12px;height:12px;border-radius:50%;border:2px solid var(--ink);display:inline-block}
+.sw.closing{background:var(--close)}.sw.open{background:var(--open)}.sw.unlisted{background:var(--unl)}
+.detail{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px}
+.detail h2{font-size:1.9rem;font-weight:700}
+.chip{display:inline-block;font-size:.85rem;font-weight:600;padding:3px 10px;border-radius:999px;margin-top:10px}
+.chip.closing{background:var(--close);color:var(--close-ink)}
+.chip.open{background:var(--open);color:#fff}
+.chip.unlisted{border:1px solid var(--line);color:var(--muted)}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:18px 16px;margin:22px 0 0}
+.fact b{display:block;font-family:"Bricolage Grotesque",sans-serif;font-size:1.7rem;font-weight:700;line-height:1.1}
+.fact small{color:var(--muted);font-size:.86rem}
+.story{margin-top:20px;padding-top:16px;border-top:1px solid var(--line);font-style:italic}
+.empty{color:var(--muted)}
+section.band{padding:56px 0 8px}
+section.band h2{font-size:clamp(1.6rem,3.4vw,2.3rem);font-weight:700;max-width:24ch}
+section.band > .wrap > p.sub{color:var(--muted);max-width:64ch;margin:10px 0 0}
+.compare{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:26px}
+.metric{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+.metric h3{font-size:1.15rem;font-weight:700;margin-bottom:14px}
+.bar{display:grid;grid-template-columns:8.5em 1fr;gap:10px;align-items:center;margin:8px 0;font-size:.92rem}
+.bar .track{height:30px;background:var(--land);border-radius:6px;position:relative;overflow:hidden}
+.bar .fill{position:absolute;inset:0 auto 0 0;border-radius:6px}
+.bar .fill.closing{background:var(--close)}.bar .fill.open{background:var(--open)}
+.bar .val{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-weight:700;font-size:.9rem}
+.metric .cov{color:var(--muted);font-size:.82rem;margin-top:10px}
+.placeholder{margin-top:26px;background:var(--surface);border:1px dashed var(--line);border-radius:14px;padding:28px;max-width:62ch}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 14px}
+.filters button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;cursor:pointer;font-size:.92rem}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tablebox{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:14px}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:.95rem}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line)}
+th{font-weight:600;color:var(--muted);font-size:.86rem}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+tbody tr{cursor:pointer}
+tbody tr:hover{background:var(--land)}
+tbody tr:last-child td{border-bottom:0}
+.method{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;margin-top:22px}
+.method h3{font-size:1.1rem;margin-bottom:6px}
+.method p{margin:0;color:var(--muted);white-space:pre-line}
+footer{padding:48px 0 56px;color:var(--muted);font-size:.9rem}
+footer ul{padding-left:1.1em;margin:8px 0 0}
+.editor{background:var(--surface);border:2px solid var(--ink);border-radius:14px;padding:22px;margin-top:20px}
+.editor h2{font-size:1.5rem}
+.editor .row{display:grid;gap:6px;margin:14px 0}
+.editor label{font-weight:600;font-size:.9rem}
+.editor input,.editor select,.editor textarea{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:6px 8px;width:100%}
+.editor textarea{min-height:70px}
+.editor table{min-width:1700px;font-size:.88rem}
+.editor td{padding:5px 6px;vertical-align:top}
+.editor td input{min-width:70px}
+.editor .bar2{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:16px;position:sticky;bottom:0;background:var(--surface);padding:10px 0}
+.msg{font-size:.92rem;color:var(--muted)}
+.rank{margin-top:26px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 20px}
+.rrow{display:grid;grid-template-columns:minmax(8em,13em) 1fr;gap:14px;align-items:center;padding:7px 0;border:0;border-bottom:1px solid var(--line);cursor:pointer;background:none;width:100%;text-align:left}
+.rrow:last-child{border-bottom:0}
+.rrow:hover .rname{text-decoration:underline}
+.rname{font-weight:600}
+.rtrack{position:relative;height:30px;display:flex;align-items:center;gap:10px}
+.rfill{height:100%;background:var(--close);border-radius:5px}
+.rval{font-variant-numeric:tabular-nums;white-space:nowrap;font-size:.92rem}
+.rval b{font-size:1.05rem}
+.rrow.zero .rval{color:var(--muted)}
+.rnote{color:var(--muted);font-size:.86rem;margin:12px 0 4px}
+@media (max-width:560px){.rrow{grid-template-columns:1fr;gap:4px}}
+@media (max-width:860px){.mapgrid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:no-preference){.detail{transition:border-color .2s}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="application/json" id="data">{
+ "title": "Not every school closure costs a neighborhood the same",
+ "intro": "Portland Public Schools has proposed closing up to 14 schools. Some sit on quiet residential streets. Others sit in the middle of busy neighborhood business districts, where dozens of locally owned shops, cafes, and services see school families every day. The district's plan treats them all the same. This page shows the difference: how many businesses surround each school on the list, and what the land the district would give up is worth.",
+ "notice": "On October 5, 2026, PPS released two scenarios: Scenario A would close 14 schools and Scenario B would close 11. The school board is expected to vote in December.",
+ "method": "Businesses within a quarter mile (about a 5-minute walk) are the ones most directly affected: they see school families at drop-off, pickup, and evening events. The one-mile count is shown for wider context. Business lists come from OpenStreetMap, checked by walking each block within a quarter mile. A business counts as locally owned if it is not part of a regional or national chain. Survey results come from a short questionnaire given in person to owners and managers near each school.",
+ "landMethod": "Land value is the Multnomah County assessor's real market value for the land only (not buildings), from PortlandMaps. Zoning is the base zone shown on PortlandMaps. School properties are tax-exempt, so some assessor values may be missing or out of date.",
+ "contact": "",
+ "updated": "October 6, 2026",
+ "sources": [
+  {
+   "label": "OPB: Up to 14 schools closing in PPS rightsizing scenarios (Oct 5, 2026)",
+   "url": "https://www.opb.org/article/2026/10/05/portland-public-schools-closures-rightsizing/"
+  },
+  {
+   "label": "KOIN: PPS proposes closing these 14 schools in 2027 (Oct 2026)",
+   "url": "https://www.koin.com/news/portland/portland-school-closures-2027/"
+  },
+  {
+   "label": "Willamette Week: PPS releases two school closure scenarios (Oct 5, 2026)",
+   "url": "https://www.wweek.com/news/schools/2026/10/05/portland-public-schools-releases-two-school-closure-scenarios-to-school-board/"
+  },
+  {
+   "label": "PortlandMaps: zoning and assessor data",
+   "url": "https://www.portlandmaps.com/"
+  }
+ ],
+ "schools": [
+  {
+   "id": "abernethy",
+   "name": "Abernethy",
+   "lat": 45.50583,
+   "lon": -122.65171,
+   "scenarios": [],
+   "businesses": 63,
+   "independent": 62,
+   "food": 21,
+   "retail": 21,
+   "services": 21,
+   "bizMile": 742
+  },
+  {
+   "id": "ainsworth",
+   "name": "Ainsworth",
+   "lat": 45.50988,
+   "lon": -122.69989,
+   "scenarios": [],
+   "businesses": 2,
+   "independent": 2,
+   "food": 1,
+   "retail": 1,
+   "services": 0,
+   "bizMile": 261
+  },
+  {
+   "id": "alameda",
+   "name": "Alameda",
+   "lat": 45.54748,
+   "lon": -122.63734,
+   "scenarios": [],
+   "businesses": 5,
+   "independent": 5,
+   "food": 2,
+   "retail": 2,
+   "services": 1,
+   "bizMile": 304
+  },
+  {
+   "id": "arleta",
+   "name": "Arleta",
+   "lat": 45.48606,
+   "lon": -122.59667,
+   "scenarios": [],
+   "businesses": 28,
+   "independent": 25,
+   "food": 10,
+   "retail": 13,
+   "services": 5,
+   "bizMile": 307
+  },
+  {
+   "id": "astor",
+   "name": "Astor",
+   "lat": 45.57899,
+   "lon": -122.72946,
+   "scenarios": [],
+   "businesses": 2,
+   "independent": 2,
+   "food": 1,
+   "retail": 0,
+   "services": 1,
+   "bizMile": 94
+  },
+  {
+   "id": "atkinson",
+   "name": "Atkinson",
+   "lat": 45.5049,
+   "lon": -122.60451,
+   "scenarios": [],
+   "businesses": 7,
+   "independent": 7,
+   "food": 3,
+   "retail": 0,
+   "services": 4,
+   "bizMile": 308
+  },
+  {
+   "id": "beach",
+   "name": "Beach",
+   "lat": 45.55782,
+   "lon": -122.68614,
+   "scenarios": [
+    "A",
+    "B"
+   ],
+   "address": "1710 N Humboldt St, Portland, OR 97217",
+   "businesses": 5,
+   "independent": 2,
+   "food": 2,
+   "retail": 3,
+   "services": 0,
+   "bizMile": 285
+  },
+  {
+   "id": "beverly-cleary",
+   "name": "Beverly Cleary",
+   "lat": 45.53693,
+   "lon": -122.63196,
+   "scenarios": [],
+   "businesses": 44,
+   "independent": 34,
+   "food": 5,
+   "retail": 10,
+   "services": 29,
+   "bizMile": 422
+  },
+  {
+   "id": "boise-eliot",
+   "name": "Boise-Eliot/Humboldt",
+   "lat": 45.54745,
+   "lon": -122.67249,
+   "scenarios": [],
+   "businesses": 44,
+   "independent": 43,
+   "food": 27,
+   "retail": 11,
+   "services": 6,
+   "bizMile": 410
+  },
+  {
+   "id": "bridger",
+   "name": "Bridger",
+   "lat": 45.51026,
+   "lon": -122.58307,
+   "scenarios": [],
+   "businesses": 9,
+   "independent": 8,
+   "food": 3,
+   "retail": 6,
+   "services": 0,
+   "bizMile": 242
+  },
+  {
+   "id": "bridlemile",
+   "name": "Bridlemile",
+   "lat": 45.49156,
+   "lon": -122.72435,
+   "scenarios": [],
+   "businesses": 0,
+   "independent": 0,
+   "food": 0,
+   "retail": 0,
+   "services": 0,
+   "bizMile": 46
+  },
+  {
+   "id": "buckman",
+   "name": "Buckman",
+   "lat": 45.52004,
+   "lon": -122.64856,
+   "scenarios": [
+    "A",
+    "B"
+   ],
+   "address": "320 SE 16th Ave, Portland, OR 97214",
+   "businesses": 52,
+   "independent": 49,
+   "food": 21,
+   "retail": 15,
+   "services": 16,
+   "bizMile": 883
+  },
+  {
+   "id": "capitol-hill",
+   "name": "Capitol Hill",
+   "lat": 45.46419,
+   "lon": -122.69625,
+   "scenarios": [],
+   "businesses": 28,
+   "independent": 23,
+   "food": 7,
+   "retail": 4,
+   "services": 17,
+   "bizMile": 309
+  },
+  {
+   "id": "cesar-chavez",
+   "name": "César Chávez",
+   "lat": 45.58504,
+   "lon": -122.71961,
+   "scenarios": [],
+   "businesses": 5,
+   "independent": 3,
+   "food": 3,
+   "retail": 1,
+   "services": 1,
+   "bizMile": 91
+  },
+  {
+   "id": "chapman",
+   "name": "Chapman",
+   "lat": 45.53322,
+   "lon": -122.70575,
+   "scenarios": [],
+   "businesses": 18,
+   "independent": 17,
+   "food": 9,
+   "retail": 3,
+   "services": 6,
+   "bizMile": 447
+  },
+  {
+   "id": "chief-joseph",
+   "name": "Chief Joseph",
+   "lat": 45.57308,
+   "lon": -122.6914,
+   "scenarios": [],
+   "businesses": 1,
+   "independent": 1,
+   "food": 1,
+   "retail": 0,
+   "services": 0,
+   "bizMile": 141
+  },
+  {
+   "id": "clark",
+   "name": "Clark",
+   "lat": 45.51355,
+   "lon": -122.57064,
+   "scenarios": [],
+   "businesses": 0,
+   "independent": 0,
+   "food": 0,
+   "retail": 0,
+   "services": 0,
+   "bizMile": 259
+  },
+  {
+   "id": "creston",
+   "name": "Creston",
+   "lat": 45.49579,
+   "lon": -122.61412,
+   "scenarios": [
+    "A",
+    "B"
+   ],
+   "address": "4701 SE Bush St, Portland, OR 97206",
+   "businesses": 26,
+   "independent": 21,
+   "food": 9,
+   "retail": 8,
+   "services": 9,
+   "bizMile": 321
+  },
+  {
+   "id": "duniway",
+   "name": "Duniway",
+   "lat": 45.46833,
+   "lon": -122.62826,
+   "scenarios": [],
+   "businesses": 0,
+   "independent": 0,
+   "food": 0,
+   "retail": 0,
+   "services": 0,
+   "bizMile": 106
+  },
+  {
+   "id": "faubion",
+   "name": "Faubion",
+   "lat": 45.57092,
+   "lon": -122.63413,
+   "scenarios": [],
+   "businesses": 3,
+   "independent": 2,
+   "food": 2,
+   "retail": 0,
+   "services": 1,
+   "bizMile": 173
+  },
+  {
+   "id": "forest-park",
+   "name": "Forest Park",
+   "lat": 45.54271,
+   "lon": -122.77735,
+   "scenarios": [],
+   "businesses": 0,
+   "independent": 0,
+   "food": 0,
+   "retail": 0,
+   "services": 0,
+   "bizMile": 6
+  },
+  {
+   "id": "glencoe",
+   "name": "Glencoe",
+   "lat": 45.51724,
+   "lon": -122.61144,
+   "scenarios": [],
+   "businesses": 16,
+   "independent": 15,
+   "food": 6,
+   "retail": 3,
+   "services": 7,
+   "bizMile": 345
+  },
+  {
+   "id": "grout",
+   "name": "Grout",
+   "lat": 45.49137,
+   "lon": -122.63319,
+   "scenarios": [],
+   "businesses": 13,
+   "independent": 12,
+   "food": 9,
+   "retail": 2,
+   "services": 2,
+   "bizMile": 338
+  },
+  {
+   "id": "harrison-park",
+   "name": "Harrison Park",
+   "lat": 45.50737,
+   "lon": -122.57502,
+   "scenarios": [],
+   "businesses": 49,
+   "independent": 47,
+   "food": 26,
+   "retail": 14,
+   "services": 9,
+   "bizMile": 288
+  },
+  {
+   "id": "hayhurst",
+   "name": "Hayhurst",
+   "lat": 45.48073,
+   "lon": -122.72962,
+   "scenarios": [],
+   "businesses": 0,
+   "independent": 0,
+   "food": 0,
+   "retail": 0,
+   "services": 0,
+   "bizMile": 107
+  },
+  {
+   "id": "irvington",
+   "name": "Irvington",
+   "lat": 45.53978,
+   "lon": -122.65231,
+   "scenarios": [
+    "A",
+    "B"
+   ],
+   "receiving": "Beverly Cleary (K-5) and Beaumont Middle",
+   "address": "1320 NE Brazee St, Portland, OR 97212",
+   "businesses": 2,
+   "independent": 2,
+   "food": 1,
+   "retail": 0,
+   "services": 1,
+   "bizMile": 408
+  },
+  {
+   "id": "james-john",
+   "name": "James John",
+   "lat": 45.59026,
+   "lon": -122.7523,
+   "scenarios": [
+    "A",
+    "B"
+   ],
+   "address": "7439 N Charleston Ave, Portland, OR 97203",
+   "businesses": 85,
+   "independent": 76,
+   "food": 39,
+   "retail": 15,
+   "services": 31,
+   "bizMile": 141
+  },
+  {
+   "id": "jason-lee",
+   "name": "Jason Lee",
+   "lat": 45.53755,
+   "lon": -122.5669,
+   "scenarios": [],
+   "businesses": 1,
+   "independent": 0,
+   "food": 0,
+   "retail": 0,
+   "services": 1,
+   "bizMile": 132
+  },
+  {
+   "id": "kelly",
+   "name": "Kelly",
+   "lat": 45.47242,
+   "lon": -122.57176,
+   "scenarios": [],
+   "businesses": 0,
+   "independent": 0,
+   "food": 0,
+   "retail": 0,
+   "services": 0,
+   "bizMile": 192
+  },
+  {
+   "id": "king",
+   "name": "Dr. Martin Luther King Jr.",
+   "lat": 45.55763,
+   "lon": -122.65951,
+   "scenarios": [],
+   "businesses": 54,
+   "independent": 48,
+   "food": 9,
+   "retail": 14,
+   "services": 31,
+   "bizMile": 567
+  },
+  {
+   "id": "laurelhurst",
+   "name": "Laurelhurst",
+   "lat": 45.52921,
+   "lon": -122.61962,
+   "scenarios": [],
+   "businesses": 5,
+   "independent": 5,
+   "food": 2,
+   "retail": 0,
+   "services": 3,
+   "bizMile": 424
+  },
+  {
+   "id": "lent",
+   "name": "Lent",
+   "lat": 45.4861,
+   "lon": -122.56452,
+   "scenarios": [],
+   "businesses": 1,
+   "independent": 1,
+   "food": 0,
+   "retail": 1,
+   "services": 0,
+   "bizMile": 255
+  },
+  {
+   "id": "lewis",
+   "name": "Lewis",
+   "lat": 45.47397,
+   "lon": -122.61723,
+   "scenarios": [
+    "A"
+   ],
+   "receiving": "Duniway",
+   "address": "4401 SE Evergreen St, Portland, OR 97206",
+   "businesses": 0,
+   "independent": 0,
+   "food": 0,
+   "retail": 0,
+   "services": 0,
+   "bizMile": 128
+  },
+  {
+   "id": "llewellyn",
+   "name": "Llewellyn",
+   "lat": 45.47673,
+   "lon": -122.65236,
+   "scenarios": [],
+   "businesses": 68,
+   "independent": 57,
+   "food": 16,
+   "retail": 10,
+   "services": 42,
+   "bizMile": 339
+  },
+  {
+   "id": "maplewood",
+   "name": "Maplewood",
+   "lat": 45.4714,
+   "lon": -122.72987,
+   "scenarios": [
+    "A",
+    "B"
+   ],
+   "address": "7452 SW 52nd Ave, Portland, OR 97219",
+   "businesses": 1,
+   "independent": 1,
+   "food": 1,
+   "retail": 0,
+   "services": 0,
+   "bizMile": 104
+  },
+  {
+   "id": "markham",
+   "name": "Markham",
+   "lat": 45.44923,
+   "lon": -122.72615,
+   "scenarios": [],
+   "businesses": 9,
+   "independent": 9,
+   "food": 2,
+   "retail": 1,
+   "services": 6,
+   "bizMile": 72
+  },
+  {
+   "id": "marysville",
+   "name": "Marysville",
+   "lat": 45.48753,
+   "lon": -122.58347,
+   "scenarios": [
+    "A",
+    "B"
+   ],
+   "receiving": "Arleta",
+   "address": "7733 SE Raymond St, Portland, OR 97206",
+   "businesses": 17,
+   "independent": 14,
+   "food": 7,
+   "retail": 6,
+   "services": 4,
+   "bizMile": 374
+  },
+  {
+   "id": "peninsula",
+   "name": "Peninsula",
+   "lat": 45.58172,
+   "lon": -122.70111,
+   "scenarios": [
+    "A",
+    "B"
+   ],
+   "receiving": "Rosa Parks",
+   "address": "8125 N Emerald Ave, Portland, OR 97217",
+   "businesses": 0,
+   "independent": 0,
+   "food": 0,
+   "retail": 0,
+   "services": 0,
+   "bizMile": 92
+  },
+  {
+   "id": "richmond",
+   "name": "Richmond",
+   "lat": 45.50637,
+   "lon": -122.61973,
+   "scenarios": [],
+   "businesses": 35,
+   "independent": 30,
+   "food": 12,
+   "retail": 5,
+   "services": 18,
+   "bizMile": 577
+  },
+  {
+   "id": "rieke",
+   "name": "Rieke",
+   "lat": 45.47711,
+   "lon": -122.69528,
+   "scenarios": [],
+   "businesses": 85,
+   "independent": 73,
+   "food": 23,
+   "retail": 11,
+   "services": 51,
+   "bizMile": 203
+  },
+  {
+   "id": "rigler",
+   "name": "Rigler",
+   "lat": 45.55645,
+   "lon": -122.60834,
+   "scenarios": [],
+   "businesses": 0,
+   "independent": 0,
+   "food": 0,
+   "retail": 0,
+   "services": 0,
+   "bizMile": 136
+  },
+  {
+   "id": "rosa-parks",
+   "name": "Rosa Parks",
+   "lat": 45.5879,
+   "lon": -122.71287,
+   "scenarios": [],
+   "businesses": 2,
+   "independent": 2,
+   "food": 0,
+   "retail": 2,
+   "services": 0,
+   "bizMile": 76
+  },
+  {
+   "id": "rose-city-park",
+   "name": "Rose City Park",
+   "lat": 45.53937,
+   "lon": -122.60361,
+   "scenarios": [
+    "A"
+   ],
+   "address": "2334 NE 57th Ave, Portland, OR 97213",
+   "businesses": 11,
+   "independent": 10,
+   "food": 7,
+   "retail": 2,
+   "services": 2,
+   "bizMile": 299
+  },
+  {
+   "id": "sabin",
+   "name": "Sabin",
+   "lat": 45.55193,
+   "lon": -122.64776,
+   "scenarios": [
+    "A",
+    "B"
+   ],
+   "address": "4013 NE 18th Ave, Portland, OR 97212",
+   "businesses": 0,
+   "independent": 0,
+   "food": 0,
+   "retail": 0,
+   "services": 0,
+   "bizMile": 438
+  },
+  {
+   "id": "scott",
+   "name": "Scott",
+   "lat": 45.55462,
+   "lon": -122.59425,
+   "scenarios": [],
+   "businesses": 4,
+   "independent": 4,
+   "food": 4,
+   "retail": 0,
+   "services": 0,
+   "bizMile": 145
+  },
+  {
+   "id": "sitton",
+   "name": "Sitton",
+   "lat": 45.59994,
+   "lon": -122.75836,
+   "scenarios": [],
+   "businesses": 0,
+   "independent": 0,
+   "food": 0,
+   "retail": 0,
+   "services": 0,
+   "bizMile": 118
+  },
+  {
+   "id": "skyline",
+   "name": "Skyline",
+   "lat": 45.6076,
+   "lon": -122.8569,
+   "scenarios": [],
+   "businesses": 0,
+   "independent": 0,
+   "food": 0,
+   "retail": 0,
+   "services": 0,
+   "bizMile": 0
+  },
+  {
+   "id": "stephenson",
+   "name": "Stephenson",
+   "lat": 45.44105,
+   "lon": -122.70375,
+   "scenarios": [
+    "A"
+   ],
+   "address": "2627 SW Stephenson St, Portland, OR 97219",
+   "businesses": 0,
+   "independent": 0,
+   "food": 0,
+   "retail": 0,
+   "services": 0,
+   "bizMile": 27
+  },
+  {
+   "id": "vernon",
+   "name": "Vernon",
+   "lat": 45.56212,
+   "lon": -122.64384,
+   "scenarios": [],
+   "businesses": 57,
+   "independent": 55,
+   "food": 32,
+   "retail": 12,
+   "services": 13,
+   "bizMile": 335
+  },
+  {
+   "id": "vestal",
+   "name": "Vestal",
+   "lat": 45.52473,
+   "lon": -122.5801,
+   "scenarios": [],
+   "businesses": 32,
+   "independent": 22,
+   "food": 12,
+   "retail": 9,
+   "services": 11,
+   "bizMile": 189
+  },
+  {
+   "id": "whitman",
+   "name": "Whitman",
+   "lat": 45.46771,
+   "lon": -122.58782,
+   "scenarios": [],
+   "businesses": 3,
+   "independent": 2,
+   "food": 1,
+   "retail": 1,
+   "services": 1,
+   "bizMile": 90
+  },
+  {
+   "id": "woodlawn",
+   "name": "Woodlawn",
+   "lat": 45.57491,
+   "lon": -122.65273,
+   "scenarios": [],
+   "businesses": 3,
+   "independent": 2,
+   "food": 0,
+   "retail": 2,
+   "services": 1,
+   "bizMile": 117
+  },
+  {
+   "id": "woodmere",
+   "name": "Woodmere",
+   "lat": 45.4747,
+   "lon": -122.58234,
+   "scenarios": [
+    "A",
+    "B"
+   ],
+   "receiving": "Whitman",
+   "address": "7900 SE Duke St, Portland, OR 97206",
+   "businesses": 15,
+   "independent": 13,
+   "food": 3,
+   "retail": 8,
+   "services": 4,
+   "bizMile": 205
+  },
+  {
+   "id": "woodstock",
+   "name": "Woodstock",
+   "lat": 45.48206,
+   "lon": -122.61239,
+   "scenarios": [],
+   "businesses": 39,
+   "independent": 32,
+   "food": 10,
+   "retail": 2,
+   "services": 27,
+   "bizMile": 227
+  },
+  {
+   "id": "sunnyside",
+   "name": "Sunnyside Environmental",
+   "lat": 45.51477,
+   "lon": -122.62891,
+   "scenarios": [],
+   "businesses": 121,
+   "independent": 109,
+   "food": 55,
+   "retail": 46,
+   "services": 20,
+   "bizMile": 637
+  },
+  {
+   "id": "sellwood-ms",
+   "name": "Sellwood Middle",
+   "lat": 45.46218,
+   "lon": -122.65004,
+   "scenarios": [
+    "A",
+    "B"
+   ],
+   "receiving": "Hosford (Llewellyn area) and Brentwood (Duniway and Lewis areas)",
+   "address": "8300 SE 15th Ave, Portland, OR 97202",
+   "businesses": 76,
+   "independent": 65,
+   "food": 19,
+   "retail": 24,
+   "services": 33,
+   "bizMile": 220
+  }
+ ],
+ "released": true
+}</script>
+<script id="app">
+(function(){
+'use strict';
+var SRC = { css: document.getElementById('s').textContent, js: document.getElementById('app').textContent };
+var state;
+try { state = JSON.parse(document.getElementById('data').textContent); } catch (e) { state = { schools: [] }; }
+if (!Array.isArray(state.schools)) state.schools = [];
+
+var root = document.getElementById('root');
+var scen = 'A';
+var selected = null, filter = 'all', editing = false, canEdit = false, artifactNs = null, draft = null, editMsg = '';
+var LABEL = { closing: 'Proposed to close', open: 'Staying open', unlisted: 'Not yet announced' };
+
+function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function num(v){ if (v === null || v === undefined || v === '' || isNaN(+v)) return null; return +v; }
+function money(v){ v = num(v); if (v == null) return null; if (v >= 1e6) return '$' + (v/1e6).toFixed(v >= 1e7 ? 0 : 1) + 'M'; if (v >= 1e3) return '$' + Math.round(v/1e3) + 'K'; return '$' + Math.round(v); }
+function isCommercial(z){ z = String(z || '').toUpperCase().trim(); return /^(CM|CE|CX|CI|CR|EG|EX|RM|RX)/.test(z); }
+function stat(x){ if (state.released) return (x.scenarios || []).indexOf(scen) >= 0 ? 'closing' : 'open'; return LABEL[x.status] ? x.status : 'unlisted'; }
+function scenText(x){ var s = x.scenarios || []; if (s.length === 2) return 'Both scenarios'; if (s.length === 1) return 'Scenario ' + s[0] + ' only'; return 'Neither scenario'; }
+function scenCount(k){ return state.schools.filter(function(x){ return (x.scenarios || []).indexOf(k) >= 0; }).length; }
+function byId(id){ for (var i = 0; i < state.schools.length; i++) if (state.schools[i].id === id) return state.schools[i]; return null; }
+
+/* ---------- map ---------- */
+var B = { n: 45.65, s: 45.43, w: -122.85, e: -122.55 };
+var MW = 1000, MH = Math.round(1000 * (B.n - B.s) * 111 / ((B.e - B.w) * 78.6));
+function px(lat, lon){ return [ (lon - B.w) / (B.e - B.w) * MW, (B.n - lat) / (B.n - B.s) * MH ]; }
+function path(pts){ return pts.map(function(p, i){ var q = px(p[0], p[1]); return (i ? 'L' : 'M') + q[0].toFixed(1) + ' ' + q[1].toFixed(1); }).join(' '); }
+var WILLAMETTE = [[45.43,-122.652],[45.45,-122.655],[45.47,-122.662],[45.49,-122.666],[45.505,-122.668],[45.52,-122.671],[45.535,-122.672],[45.55,-122.682],[45.562,-122.698],[45.572,-122.72],[45.582,-122.748],[45.59,-122.765],[45.605,-122.775],[45.625,-122.775],[45.648,-122.763]];
+var COLUMBIA = [[45.66,-122.80],[45.648,-122.763],[45.628,-122.72],[45.618,-122.68],[45.607,-122.63],[45.597,-122.58],[45.588,-122.55]];
+
+function mapSvg(){
+  var s = '<svg viewBox="0 0 ' + MW + ' ' + MH + '" role="img" aria-label="Schematic map of Portland Public Schools elementary and K-8 schools">';
+  s += '<rect width="' + MW + '" height="' + MH + '" fill="var(--land)" rx="8"/>';
+  s += '<path d="' + path(COLUMBIA) + '" fill="none" stroke="var(--water)" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>';
+  s += '<path d="' + path(WILLAMETTE) + '" fill="none" stroke="var(--water)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>';
+  var lbl = px(45.497, -122.676);
+  s += '<text x="' + lbl[0] + '" y="' + lbl[1] + '" fill="var(--muted)" font-size="18" font-style="italic" transform="rotate(-80 ' + lbl[0] + ' ' + lbl[1] + ')" text-anchor="middle">Willamette</text>';
+  var c = px(45.612, -122.60);
+  s += '<text x="' + c[0] + '" y="' + (c[1] - 24) + '" fill="var(--muted)" font-size="18" font-style="italic" text-anchor="middle" transform="rotate(10 ' + c[0] + ' ' + (c[1] - 24) + ')">Columbia</text>';
+  var order = { unlisted: 0, open: 1, closing: 2 };
+  var list = state.schools.filter(function(x){ return num(x.lat) != null && num(x.lon) != null; })
+    .sort(function(a, b){ return (order[stat(a)] || 0) - (order[stat(b)] || 0); });
+  list.forEach(function(x){
+    var p = px(+x.lat, +x.lon), st = stat(x);
+    s += '<g class="dot ' + st + (selected === x.id ? ' sel' : '') + '" data-id="' + esc(x.id) + '" tabindex="0" role="button" aria-label="' + esc(x.name) + ', ' + LABEL[st] + '">';
+    s += '<title>' + esc(x.name) + '</title>';
+    s += '<circle class="ring" cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="17"/>';
+    s += '<circle class="p" cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="' + (st === 'closing' ? 11 : 8.5) + '"/>';
+    s += '</g>';
+  });
+  return s + '</svg>';
+}
+
+function detailHtml(){
+  var x = selected && byId(selected);
+  if (!x) {
+    return '<div class="detail"><h2>Pick a school</h2><p class="empty">Select any dot on the map, or a row in the table below, to see the businesses around that school and the value of its land.</p></div>';
+  }
+  var st = stat(x);
+  var biz = num(x.businesses), lv = money(x.landValue), ac = num(x.acres);
+  var h = '<div class="detail" aria-live="polite"><h2>' + esc(x.name) + '</h2>';
+  h += '<span class="chip ' + st + '">' + LABEL[st] + (state.released ? ' in Scenario ' + scen : '') + '</span>';
+  if (state.released) h += '<p style="margin:10px 0 0;color:var(--muted)">Proposed for closure in: ' + scenText(x).toLowerCase() + '.' + (x.receiving ? ' Students would move to ' + esc(x.receiving) + '.' : '') + '</p>';
+  if (x.address) h += '<p style="margin:12px 0 0;color:var(--muted)">' + esc(x.address) + '</p>';
+  h += '<div class="facts">';
+  h += '<div class="fact"><b>' + (biz == null ? '–' : biz) + '</b><small>businesses within ¼ mile</small></div>';
+  h += '<div class="fact"><b>' + (num(x.bizMile) == null ? '–' : num(x.bizMile)) + '</b><small>businesses within 1 mile</small></div>';
+  h += '<div class="fact"><b>' + (num(x.independent) == null || !biz ? '–' : Math.round(num(x.independent) / biz * 100) + '%') + '</b><small>locally owned (¼ mile)</small></div>';
+  h += '<div class="fact"><b>' + (num(x.surveyed) == null ? '–' : (num(x.expectLoss) == null ? 0 : num(x.expectLoss)) + ' of ' + num(x.surveyed)) + '</b><small>owners surveyed who expect to lose sales</small></div>';
+  h += '<div class="fact"><b>' + (lv || '–') + '</b><small>assessed land value</small></div>';
+  h += '<div class="fact"><b>' + (ac == null ? '–' : ac) + '</b><small>acres</small></div>';
+  h += '<div class="fact"><b>' + (x.zoning ? esc(x.zoning) : '–') + '</b><small>zoning</small></div>';
+  h += '</div>';
+  var mix = [['food','food and drink'],['retail','retail'],['services','services']].filter(function(k){ return num(x[k[0]]) != null; }).map(function(k){ return num(x[k[0]]) + ' ' + k[1]; });
+  if (mix.length) h += '<p style="margin:16px 0 0;color:var(--muted)">Within ¼ mile: ' + mix.join(', ') + '.</p>';
+  if (biz) {
+    var counted = state.schools.filter(function(s){ return num(s.businesses) != null; });
+    var rank = 1 + counted.filter(function(s){ return num(s.businesses) > biz; }).length;
+    if (counted.length > 5) h += '<p style="margin:10px 0 0;color:var(--muted)">Ranks #' + rank + ' of ' + counted.length + ' schools for businesses within \u00bc mile.</p>';
+  }
+  if (x.story) h += '<p class="story">' + esc(x.story) + '</p>';
+  if (biz == null && !lv && !x.zoning) h += '<p class="empty" style="margin-top:18px">Data for this school hasn\u2019t been added yet.</p>';
+  return h + '</div>';
+}
+
+/* ---------- comparison ---------- */
+function groupStats(st){
+  var g = state.schools.filter(function(x){ return stat(x) === st; });
+  var biz = g.map(function(x){ return num(x.businesses); }).filter(function(v){ return v != null; });
+  var land = g.map(function(x){ return num(x.landValue); }).filter(function(v){ return v != null; });
+  var per = g.filter(function(x){ return num(x.landValue) != null && num(x.acres); }).map(function(x){ return num(x.landValue) / num(x.acres); });
+  var zoned = g.filter(function(x){ return x.zoning; });
+  var avg = function(a){ return a.length ? a.reduce(function(s, v){ return s + v; }, 0) / a.length : null; };
+  return {
+    n: g.length,
+    biz: avg(biz), bizN: biz.length, bizTotal: biz.reduce(function(s, v){ return s + v; }, 0),
+    mile: avg(g.map(function(x){ return num(x.bizMile); }).filter(function(v){ return v != null; })), mileN: g.filter(function(x){ return num(x.bizMile) != null; }).length,
+    ind: (function(){ var r = g.filter(function(x){ return num(x.independent) != null && num(x.businesses); }); var a = r.reduce(function(s, x){ return s + num(x.independent); }, 0), b = r.reduce(function(s, x){ return s + num(x.businesses); }, 0); return b ? a / b * 100 : null; })(),
+    indN: g.filter(function(x){ return num(x.independent) != null && num(x.businesses); }).length,
+    land: avg(land), landN: land.length,
+    per: avg(per), perN: per.length,
+    com: zoned.length ? zoned.filter(function(x){ return isCommercial(x.zoning); }).length / zoned.length * 100 : null, comN: zoned.length
+  };
+}
+function metric(title, a, b, key, fmt, nkey){
+  var va = a[key], vb = b[key];
+  if (va == null && vb == null) return '<div class="metric"><h3>' + title + '</h3><p class="empty">No data added yet.</p></div>';
+  var max = Math.max(va || 0, vb || 0) || 1;
+  function bar(name, v, cls){
+    var w = v == null ? 0 : Math.max(4, v / max * 100);
+    return '<div class="bar"><span>' + name + '</span><div class="track"><div class="fill ' + cls + '" style="width:' + w + '%"></div><span class="val">' + (v == null ? 'No data' : fmt(v)) + '</span></div></div>';
+  }
+  return '<div class="metric"><h3>' + title + '</h3>' + bar('Closing', va, 'closing') + bar('Staying open', vb, 'open') +
+    '<p class="cov">Based on ' + a[nkey] + ' of ' + a.n + ' closing and ' + b[nkey] + ' of ' + b.n + ' remaining schools with data.</p></div>';
+}
+function compareHtml(){
+  var a = groupStats('closing'), b = groupStats('open');
+  if (!a.n) {
+    return '<div class="placeholder"><h3 style="font-size:1.25rem;margin-bottom:8px">Waiting on the district\u2019s list</h3><p style="margin:0;color:var(--muted)">Once schools are named for closure, this section compares them with the schools that stay open: how many businesses surround each, what the land is worth, and how much of it is zoned for apartments, commercial, or mixed-use development.</p></div>';
+  }
+  if (!a.landN && !a.comN && !b.landN && !b.comN) {
+    return '<div class="placeholder"><h3 style="font-size:1.25rem;margin-bottom:8px">Land data is being gathered</h3><p style="margin:0;color:var(--muted)">This section will compare the schools proposed to close with the schools staying open: what the land is worth, and how much of it is zoned for apartments, commercial, or mixed-use development.</p></div>';
+  }
+  var h = '<div class="compare">';
+  h += metric('Average land value', a, b, 'land', money, 'landN');
+  h += metric('Land value per acre', a, b, 'per', money, 'perN');
+  h += metric('Share zoned for apartments, commercial, or mixed use', a, b, 'com', function(v){ return Math.round(v) + '%'; }, 'comN');
+  return h + '</div>';
+}
+
+/* ---------- ranked closures ---------- */
+function rankHtml(){
+  var g = state.schools.filter(function(x){ return stat(x) === 'closing'; });
+  if (!g.length) return '';
+  var withData = g.filter(function(x){ return num(x.businesses) != null; });
+  if (!withData.length) return '<div class="placeholder"><p style="margin:0;color:var(--muted)">Business counts for these schools haven\u2019t been added yet.</p></div>';
+  withData.sort(function(a, b){ return num(b.businesses) - num(a.businesses); });
+  var max = Math.max.apply(null, withData.map(function(x){ return num(x.businesses); })) || 1;
+  var total = withData.reduce(function(s, x){ return s + num(x.businesses); }, 0);
+  var busy = withData.filter(function(x){ return num(x.businesses) >= 50; }).length;
+  var h = '<p class="sub" style="font-size:1.15rem;color:var(--ink);margin-top:18px"><strong>' + total + ' businesses</strong> sit within a quarter mile of the schools proposed to close in Scenario ' + scen + '. ' + (busy ? busy + ' of those schools anchor a business district; ' + (withData.length - busy) + ' are in mostly residential areas.' : '') + '</p>';
+  h += '<div class="rank">';
+  withData.forEach(function(x){
+    var b = num(x.businesses), ind = num(x.independent);
+    var val = b ? '<b>' + b + '</b> businesses' + (ind != null ? ', ' + Math.round(ind / b * 100) + '% locally owned' : '') : 'No businesses within \u00bc mile';
+    h += '<button class="rrow' + (b ? '' : ' zero') + '" data-id="' + esc(x.id) + '"><span class="rname">' + esc(x.name) + '</span><span class="rtrack"><span class="rfill" style="width:' + (b ? Math.max(1, b / max * 65) : 0) + '%"></span><span class="rval">' + val + '</span></span></button>';
+  });
+  h += '</div>';
+  var missing = g.length - withData.length;
+  h += '<p class="rnote">Businesses within a quarter mile (about a 5-minute walk) of each school. Select a school for details.' + (missing ? ' ' + missing + ' school' + (missing > 1 ? 's' : '') + ' not yet counted.' : '') + '</p>';
+  return h;
+}
+
+/* ---------- table ---------- */
+function tableHtml(){
+  var counts = { all: state.schools.length, closing: 0, open: 0, unlisted: 0 };
+  state.schools.forEach(function(x){ counts[stat(x)]++; });
+  var f = '<div class="filters" role="group" aria-label="Filter schools">';
+  [['all','All schools'],['closing','Proposed to close'],['open','Staying open'],['unlisted','Not yet announced']].filter(function(o){ return !(state.released && o[0] === 'unlisted'); }).forEach(function(o){
+    f += '<button data-filter="' + o[0] + '" aria-pressed="' + (filter === o[0]) + '">' + o[1] + ' (' + counts[o[0]] + ')</button>';
+  });
+  f += '</div>';
+  var rows = state.schools.filter(function(x){ return filter === 'all' || stat(x) === filter; })
+    .slice().sort(function(a, b){ return (b.scenarios || []).length - (a.scenarios || []).length || a.name.localeCompare(b.name); });
+  var t = '<div class="tablebox"><table><thead><tr><th>School</th><th>Status in Scenario ' + scen + '</th>' + (state.released ? '<th>Closes under</th>' : '') + '<th class="n">Within ¼ mi</th><th class="n">Within 1 mi</th><th class="n">Land value</th><th class="n">Acres</th><th>Zoning</th></tr></thead><tbody>';
+  rows.forEach(function(x){
+    var st = stat(x);
+    t += '<tr data-id="' + esc(x.id) + '" tabindex="0"><td><strong>' + esc(x.name) + '</strong></td><td><span class="sw ' + st + '" style="vertical-align:-1px;margin-right:6px"></span>' + LABEL[st] + '</td>' + (state.released ? '<td>' + ((x.scenarios || []).length ? scenText(x) : '–') + '</td>' : '') +
+      '<td class="n">' + (num(x.businesses) == null ? '–' : num(x.businesses)) + '</td><td class="n">' + (num(x.bizMile) == null ? '–' : num(x.bizMile)) + '</td><td class="n">' + (money(x.landValue) || '–') + '</td><td class="n">' + (num(x.acres) == null ? '–' : num(x.acres)) + '</td><td>' + (x.zoning ? esc(x.zoning) : '–') + '</td></tr>';
+  });
+  if (!rows.length) t += '<tr><td colspan="8" class="empty">No schools in this group yet.</td></tr>';
+  return f + t + '</tbody></table></div>';
+}
+
+/* ---------- editor (owner only) ---------- */
+var FIELDS = [['name','School','text'],['scenarios','Closes in','scen'],['receiving','Students move to','text'],['businesses','Businesses ¼ mi','number'],['independent','Locally owned ¼ mi','number'],['food','Food & drink','number'],['retail','Retail','number'],['services','Services','number'],['bizMile','Businesses 1 mi','number'],['surveyed','Owners surveyed','number'],['expectLoss','Expect lost sales','number'],['landValue','Land value ($)','number'],['acres','Acres','number'],['zoning','Zoning','text'],['address','Address','text'],['lat','Lat','number'],['lon','Lon','number'],['story','Quote or note','text']];
+function editorHtml(){
+  var d = draft;
+  var h = '<div class="editor"><h2>Edit page data</h2><p class="msg">Only you can see this panel. Changes go live for everyone when you publish.</p>';
+  [['title','Headline'],['intro','Introduction'],['notice','Status note'],['method','How businesses were counted'],['landMethod','How land and zoning were measured'],['contact','Contact or call to action'],].forEach(function(f){
+    h += '<div class="row"><label for="ed-' + f[0] + '">' + f[1] + '</label>' + (f[0] === 'title'
+      ? '<input id="ed-' + f[0] + '" data-g="' + f[0] + '" value="' + esc(d[f[0]]) + '">'
+      : '<textarea id="ed-' + f[0] + '" data-g="' + f[0] + '">' + esc(d[f[0]]) + '</textarea>') + '</div>';
+  });
+  h += '<div class="tablebox" style="margin-top:10px"><table><thead><tr>';
+  FIELDS.forEach(function(f){ h += '<th>' + f[1] + '</th>'; });
+  h += '<th></th></tr></thead><tbody>';
+  d.schools.forEach(function(x, i){
+    h += '<tr>';
+    FIELDS.forEach(function(f){
+      var v = x[f[0]] == null ? '' : x[f[0]];
+      if (f[2] === 'scen') {
+        h += '<td style="white-space:nowrap">' + ['A','B'].map(function(o){ return '<label style="font-weight:400;margin-right:8px"><input type="checkbox" style="width:auto" data-sc="' + o + '" data-i="' + i + '"' + ((x.scenarios || []).indexOf(o) >= 0 ? ' checked' : '') + '> ' + o + '</label>'; }).join('') + '</td>';
+      } else {
+        h += '<td><input data-i="' + i + '" data-k="' + f[0] + '" type="' + (f[2] === 'number' ? 'number' : 'text') + '" step="any" value="' + esc(v) + '" aria-label="' + f[1] + ' for ' + esc(x.name) + '"' + (f[0] === 'story' || f[0] === 'address' || f[0] === 'receiving' ? ' style="min-width:200px"' : '') + '></td>';
+      }
+    });
+    h += '<td><button class="btn" data-del="' + i + '" aria-label="Remove ' + esc(x.name) + '">Remove</button></td></tr>';
+  });
+  h += '</tbody></table></div>';
+  h += '<div class="bar2"><button class="btn" data-act="add">Add a school</button><button class="btn primary" data-act="publish">Publish changes</button><button class="btn" data-act="cancel">Discard changes</button><span class="msg" id="edmsg">' + esc(editMsg) + '</span></div></div>';
+  return h;
+}
+
+/* ---------- page ---------- */
+function render(){
+  var keepScroll = window.scrollY;
+  var h = '<header class="top"><div class="wrap"><div class="toprow"><h1>' + esc(state.title) + '</h1>';
+  if (canEdit) h += '<button class="btn" data-act="edit">' + (editing ? 'Close editor' : 'Edit data') + '</button>';
+  h += '</div><p class="lede">' + esc(state.intro) + '</p>';
+  if (state.notice) h += '<p class="notice"><i aria-hidden="true"></i><span>' + esc(state.notice) + '</span></p>';
+  if (state.released) h += '<div class="filters" role="group" aria-label="Choose a scenario" style="margin-top:20px">' + ['A','B'].map(function(k){ return '<button data-scen="' + k + '" aria-pressed="' + (scen === k) + '">Scenario ' + k + ': ' + scenCount(k) + ' closures</button>'; }).join('') + '</div>';
+  if (editing && draft) h += editorHtml();
+  h += '</div></header>';
+  h += '<main><div class="wrap"><div class="mapgrid"><div class="mapbox">' + mapSvg() +
+    '<div class="legend"><span><i class="sw closing"></i>Proposed to close</span><span><i class="sw open"></i>Staying open</span>' + (state.released ? '' : '<span><i class="sw unlisted"></i>Not yet announced</span>') + '<span>Map is schematic; locations are approximate.</span></div></div>' +
+    detailHtml() + '</div></div>';
+  h += '<section class="band"><div class="wrap"><h2>Some closures would take a business district\u2019s anchor</h2><p class="sub">The schools proposed to close in Scenario ' + scen + ', ranked by how many businesses surround them.</p>' + rankHtml() + '</div></section>';
+  h += '<section class="band"><div class="wrap"><h2>The land the district would give up, and the land it would keep</h2>' + compareHtml() + '</div></section>';
+  h += '<section class="band"><div class="wrap"><h2>Every school we\u2019re tracking</h2><p class="sub">Select a row to see it on the map.</p>' + tableHtml() + '</div></section>';
+  h += '<section class="band"><div class="wrap"><h2>How these numbers were gathered</h2><div class="method"><div><h3>Businesses around each school</h3><p>' + esc(state.method) + '</p></div><div><h3>Land value and zoning</h3><p>' + esc(state.landMethod) + '</p></div></div></div></section>';
+  h += '<footer><div class="wrap">';
+  if (state.contact) h += '<p style="color:var(--ink);font-size:1.05rem;white-space:pre-line">' + esc(state.contact) + '</p>';
+  if (state.updated) h += '<p>Last updated ' + esc(state.updated) + '.</p>';
+  if (state.sources && state.sources.length) {
+    h += '<p>Sources</p><ul>' + state.sources.map(function(s){ return '<li><a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.label) + '</a></li>'; }).join('') + '</ul>';
+  }
+  h += '</div></footer>';
+  root.innerHTML = h;
+  window.scrollTo(0, keepScroll);
+}
+
+function selectSchool(id, scroll){
+  selected = id; render();
+  if (scroll) { var m = root.querySelector('.mapgrid'); if (m) m.scrollIntoView({ block: 'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); }
+}
+
+root.addEventListener('click', function(e){
+  var t = e.target.closest('[data-id],[data-filter],[data-act],[data-del],[data-scen]');
+  if (!t) return;
+  if (t.hasAttribute('data-scen')) { scen = t.getAttribute('data-scen'); render(); return; }
+  if (t.hasAttribute('data-filter')) { filter = t.getAttribute('data-filter'); render(); return; }
+  if (t.hasAttribute('data-del')) {
+    var i = +t.getAttribute('data-del');
+    if (confirm('Remove ' + draft.schools[i].name + ' from the page?')) { draft.schools.splice(i, 1); render(); }
+    return;
+  }
+  if (t.hasAttribute('data-act')) { act(t.getAttribute('data-act'), t); return; }
+  if (t.hasAttribute('data-id')) selectSchool(t.getAttribute('data-id'), t.tagName === 'TR');
+});
+root.addEventListener('keydown', function(e){
+  if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[data-id]')) { e.preventDefault(); selectSchool(e.target.getAttribute('data-id'), e.target.tagName === 'TR'); }
+});
+root.addEventListener('input', function(e){
+  var t = e.target;
+  if (!draft) return;
+  if (t.hasAttribute('data-g')) draft[t.getAttribute('data-g')] = t.value;
+  if (t.hasAttribute('data-i') && t.hasAttribute('data-k')) {
+    var k = t.getAttribute('data-k'), v = t.value;
+    if (['businesses','bizMile','independent','food','retail','services','surveyed','expectLoss','landValue','acres','lat','lon'].indexOf(k) >= 0) v = v === '' ? null : +v;
+    draft.schools[+t.getAttribute('data-i')][k] = v;
+  }
+});
+root.addEventListener('change', function(e){
+  var t = e.target;
+  if (t.matches('input[data-sc]')) { var x = draft.schools[+t.getAttribute('data-i')], k = t.getAttribute('data-sc'); var s = (x.scenarios || []).filter(function(v){ return v !== k; }); if (t.checked) s.push(k); x.scenarios = s.sort(); }
+});
+
+function slug(s){ return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || ('school-' + Date.now()); }
+
+async function act(a, el){
+  if (a === 'edit') {
+    editing = !editing;
+    draft = editing ? JSON.parse(JSON.stringify(state)) : null;
+    editMsg = ''; render(); return;
+  }
+  if (a === 'cancel') { editing = false; draft = null; render(); return; }
+  if (a === 'add') {
+    var name = prompt('School name');
+    if (name) { draft.schools.push({ id: slug(name), name: name, scenarios: [], lat: null, lon: null }); render(); }
+    return;
+  }
+  if (a === 'publish') {
+    var seen = {};
+    draft.schools.forEach(function(x){ if (!x.id || seen[x.id]) x.id = slug(x.name) + '-' + Math.random().toString(36).slice(2, 6); seen[x.id] = 1; });
+    var d = new Date();
+    draft.updated = d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    el.disabled = true; setMsg('Publishing\u2026');
+    try { await artifactNs.publish(buildHtml(draft)); setMsg('Published. Reloading\u2026'); }
+    catch (err) {
+      el.disabled = false;
+      var c = err && err.code;
+      if (c === 'conflict') setMsg('A newer version was saved elsewhere; the page is reloading to it, so these edits were not saved.');
+      else if (c === 'not_writer' || c === 'not_granted' || c === 'consent_required' || c === 'capability_disabled' || c === 'not_declared') { setMsg('This view is read-only, so changes can\u2019t be published from here.'); }
+      else if (c === 'rate_limited') setMsg('Publishing too often. Wait a minute, then publish again.');
+      else if (c === 'too_large') setMsg('The page is too large to publish. Shorten notes or remove schools.');
+      else setMsg('Publishing failed (' + (c || 'unknown error') + '). Your edits are still here; try again.');
+    }
+  }
+}
+function setMsg(m){ editMsg = m; var n = document.getElementById('edmsg'); if (n) n.textContent = m; }
+
+function buildHtml(st){
+  var json = JSON.stringify(st, null, 1).replace(/</g, '\\u003c');
+  return '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n' +
+    '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n' +
+    '<title>' + esc(st.title) + '</title>\n' +
+    '<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n' +
+    '<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">\n' +
+    '<style id="s">' + SRC.css + '</style>\n</head>\n<body>\n<div id="root"></div>\n' +
+    '<script type="application/json" id="data">' + json + '<\/script>\n' +
+    '<script id="app">' + SRC.js + '<\/script>\n</body>\n</html>\n';
+}
+
+render();
+
+})();
+</script>
+</body>
+</html>
