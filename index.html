@@ -95,9 +95,17 @@ footer.page ul{padding-left:1.1em;margin:8px 0 0}
 .editor .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .editor .bar2{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:16px;position:sticky;bottom:0;background:var(--surface);padding:10px 0}
 .msg{font-size:.92rem;color:var(--muted)}
-.hero{margin:26px 0 8px}
-.hero img{display:block;width:100%;max-height:640px;object-fit:cover;border-radius:16px;background:var(--soft)}
-.hero figcaption{color:var(--muted);font-size:.9rem;margin-top:8px}
+.herogrid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:44px;align-items:center}
+.herogrid.nophoto{grid-template-columns:1fr}
+.herogrid h1{font-size:clamp(2.1rem,4.4vw,3.4rem);max-width:none}
+.herogrid.nophoto h1{max-width:17ch;font-size:clamp(2.1rem,5.4vw,3.8rem)}
+.herogrid .subhead{max-width:none}
+.herogrid.nophoto .subhead{max-width:40ch}
+.hero{margin:0}
+.hero img{display:block;width:100%;height:auto;border-radius:16px;background:var(--soft)}
+.hero figcaption{color:var(--muted);font-size:.86rem;margin-top:8px;line-height:1.4}
+.lede{margin-top:34px}
+@media (max-width:860px){.herogrid{grid-template-columns:1fr;gap:26px}.hero img{max-height:420px;object-fit:cover;object-position:center 70%}}
 @media (max-width:560px){.rrow{grid-template-columns:1fr;gap:4px}}
 </style>
 </head>
@@ -1091,15 +1099,17 @@ function editorHtml(){
 
 function render(){
   var y = window.scrollY;
-  var h = '<header class="top"><div class="wrap"><div class="toprow"><h1>' + esc(state.title) + '</h1>';
+  var hasImg = !!state.heroImage;
+  var h = '<header class="top"><div class="wrap"><div class="herogrid' + (hasImg ? '' : ' nophoto') + '" id="herogrid"><div class="herotext"><div class="toprow"><h1>' + esc(state.title) + '</h1>';
   if (canEdit) h += '<button class="btn" data-act="edit">' + (editing ? 'Close editor' : 'Edit page') + '</button>';
   h += '</div>' + (state.subtitle ? '<p class="subhead">' + esc(state.subtitle) + '</p>' : '');
-  if (state.heroImage) h += '<figure class="hero" id="hero"><img src="' + esc(state.heroImage) + '" alt="' + esc(state.heroAlt) + '" width="1100" height="1159">' + (state.heroCaption ? '<figcaption>' + esc(state.heroCaption) + '</figcaption>' : '') + '</figure>';
-  h += '<p class="lede">' + esc(state.intro) + '</p>';
   if (state.notice) h += '<p class="notice"><i aria-hidden="true"></i><span>' + esc(state.notice) + '</span></p>';
+  h += '</div>';
+  if (hasImg) h += '<figure class="hero" id="hero"><img src="' + esc(state.heroImage) + '" alt="' + esc(state.heroAlt) + '" width="1100" height="1159">' + (state.heroCaption ? '<figcaption>' + esc(state.heroCaption) + '</figcaption>' : '') + '</figure>';
+  h += '</div><p class="lede">' + esc(state.intro) + '</p>';
   if (editing && draft) h += editorHtml();
   h += statsHtml() + '</div></header><main>';
-  setTimeout(function(){ var im = document.querySelector('#hero img'); if (im) { var hide = function(){ var f = document.getElementById('hero'); if (f) f.style.display = 'none'; }; if (im.complete && !im.naturalWidth) hide(); else im.addEventListener('error', hide); } }, 0);
+  setTimeout(function(){ var im = document.querySelector('#hero img'); if (im) { var hide = function(){ var f = document.getElementById('hero'), g = document.getElementById('herogrid'); if (f) f.style.display = 'none'; if (g) g.classList.add('nophoto'); }; if (im.complete && !im.naturalWidth) hide(); else im.addEventListener('error', hide); } }, 0);
   h += businessesHtml() + rankHtml() + voicesHtml();
   if (state.cta) h += '<section class="band"><div class="wrap"><h2>What you can do</h2><div class="cta">' + esc(state.cta) + '</div></div></section>';
   h += '</main><footer class="page"><div class="wrap"><h2 style="font-size:1.3rem;color:var(--ink)">How these numbers were gathered</h2><p class="method">' + esc(state.method) + '</p>' + tableHtml();
