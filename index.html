@@ -38,7 +38,7 @@ header.top{padding:44px 0 8px}
 h1{font-size:clamp(2.1rem,5.4vw,3.8rem);font-weight:800;max-width:17ch;letter-spacing:-.015em}
 .subhead{font-family:"Bricolage Grotesque","Public Sans",sans-serif;font-size:clamp(1.25rem,2.4vw,1.6rem);font-weight:500;line-height:1.3;max-width:40ch;margin:18px 0 0}
 .lede{max-width:64ch;color:var(--muted);font-size:1.15rem;margin:20px 0 0}
-.notice{display:inline-flex;gap:10px;align-items:center;margin-top:22px;padding:8px 16px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:.95rem}
+.notice{display:inline-flex;gap:10px;align-items:baseline;margin-top:22px;padding:10px 16px;border-radius:12px;background:var(--surface);border:1px solid var(--line);font-size:.95rem}
 .notice i{width:10px;height:10px;border-radius:50%;background:var(--close);flex:none}
 .btn{border:1px solid var(--ink);background:transparent;border-radius:8px;padding:9px 16px;cursor:pointer;font-weight:600}
 .btn.primary{background:var(--ink);color:var(--bg)}
@@ -104,8 +104,11 @@ footer.page ul{padding-left:1.1em;margin:8px 0 0}
 .hero{margin:0}
 .hero img{display:block;width:100%;height:auto;border-radius:16px;background:var(--soft)}
 .hero figcaption{color:var(--muted);font-size:.86rem;margin-top:8px;line-height:1.4}
-.lede{margin-top:34px}
-@media (max-width:860px){.herogrid{grid-template-columns:1fr;gap:26px}.hero img{max-height:420px;object-fit:cover;object-position:center 70%}}
+.introgrid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:44px;align-items:start;margin-top:40px}
+.introgrid.nonote{grid-template-columns:1fr}
+.introgrid .lede{margin:0;max-width:none}
+.introgrid .notice{margin:0;display:flex;padding:18px 20px;font-size:1rem}
+@media (max-width:860px){.introgrid{grid-template-columns:1fr;gap:20px;margin-top:28px}.herogrid{grid-template-columns:1fr;gap:26px}.hero img{max-height:420px;object-fit:cover;object-position:center 70%}}
 @media (max-width:560px){.rrow{grid-template-columns:1fr;gap:4px}}
 </style>
 </head>
@@ -1100,13 +1103,12 @@ function editorHtml(){
 function render(){
   var y = window.scrollY;
   var hasImg = !!state.heroImage;
-  var h = '<header class="top"><div class="wrap"><div class="herogrid' + (hasImg ? '' : ' nophoto') + '" id="herogrid"><div class="herotext"><div class="toprow"><h1>' + esc(state.title) + '</h1>';
+  var h = '<header class="top"><div class="wrap"><div class="herogrid' + (hasImg ? '' : ' nophoto') + '" id="herogrid"><div class="herotext"><div class="toprow"><h1>' + esc(state.title).replace(/St\. /g, 'St.&nbsp;') + '</h1>';
   if (canEdit) h += '<button class="btn" data-act="edit">' + (editing ? 'Close editor' : 'Edit page') + '</button>';
   h += '</div>' + (state.subtitle ? '<p class="subhead">' + esc(state.subtitle) + '</p>' : '');
-  if (state.notice) h += '<p class="notice"><i aria-hidden="true"></i><span>' + esc(state.notice) + '</span></p>';
   h += '</div>';
   if (hasImg) h += '<figure class="hero" id="hero"><img src="' + esc(state.heroImage) + '" alt="' + esc(state.heroAlt) + '" width="1100" height="1159">' + (state.heroCaption ? '<figcaption>' + esc(state.heroCaption) + '</figcaption>' : '') + '</figure>';
-  h += '</div><p class="lede">' + esc(state.intro) + '</p>';
+  h += '</div><div class="introgrid' + (state.notice ? '' : ' nonote') + '"><p class="lede">' + esc(state.intro) + '</p>' + (state.notice ? '<p class="notice"><i aria-hidden="true"></i><span>' + esc(state.notice) + '</span></p>' : '') + '</div>';
   if (editing && draft) h += editorHtml();
   h += statsHtml() + '</div></header><main>';
   setTimeout(function(){ var im = document.querySelector('#hero img'); if (im) { var hide = function(){ var f = document.getElementById('hero'), g = document.getElementById('herogrid'); if (f) f.style.display = 'none'; if (g) g.classList.add('nophoto'); }; if (im.complete && !im.naturalWidth) hide(); else im.addEventListener('error', hide); } }, 0);
