@@ -108,16 +108,16 @@ footer.page ul{padding-left:1.1em;margin:8px 0 0}
 .editor .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .editor .bar2{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:16px;position:sticky;bottom:0;background:var(--surface);padding:10px 0}
 .msg{font-size:.92rem;color:var(--muted)}
-.herogrid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:44px;align-items:center}
+.herogrid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:48px;align-items:center}
 .herogrid.nophoto{grid-template-columns:1fr}
 .herogrid h1{font-size:clamp(2.1rem,4.4vw,3.4rem);max-width:none}
 .herogrid.nophoto h1{max-width:17ch;font-size:clamp(2.1rem,5.4vw,3.8rem)}
 .herogrid .subhead{max-width:none}
 .herogrid.nophoto .subhead{max-width:40ch}
 .hero{margin:0}
-.hero img{display:block;width:100%;height:auto;border-radius:16px;background:var(--soft)}
+.hero img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;object-position:center 45%;border-radius:16px;background:var(--soft)}
 .hero figcaption{color:var(--muted);font-size:.86rem;margin-top:8px;line-height:1.4}
-.introgrid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:44px;align-items:start;margin-top:40px}
+.introgrid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:48px;align-items:start;margin-top:48px}
 .introgrid.nonote{grid-template-columns:1fr}
 .introgrid .lede{margin:0;max-width:none}
 .introgrid .notice{margin:0;display:flex;padding:18px 20px;font-size:1rem}
@@ -1635,10 +1635,7 @@ footer.page ul{padding-left:1.1em;margin:8px 0 0}
  "heroCaption": "Students form a heart on the James John School playground. Downtown St. Johns begins right across the street. Photo: James John Elementary",
  "subtitle": "Downtown St. Johns already fights for every customer. Closing the school at its center would be a serious blow to the small, local businesses that rely on everyday neighborhood foot traffic.",
  "jjZoningTitle": "James John School is zoned for business",
- "jjZoningText": "James John School is the only school on the closure list with commercial zoning. Its property is split between CM2 (commercial mixed use), which allows shops, offices, and apartments, and RM2 (multi-dwelling residential), which allows apartment buildings. That zoning reflects where the school sits: facing a street lined with businesses, in the middle of downtown St. Johns.\n\nThe property is owned by Portland Public Schools, with no tenants on record.",
- "allZoningTitle": "Zoning and ownership of the other schools",
- "allZoningText": "What can happen to a school site after it closes depends on its zoning and who owns it. All 14 schools proposed for closure are owned outright by Portland Public Schools, and every one of them sits on land zoned at least partly for housing or commercial development. Several of the schools that would stay open and take in their students are different: two are zoned entirely as open space, which doesn't allow housing or commercial development without a city rezoning; two more are partly open space; and one is in a building shared with other owners, so the district couldn't sell it on its own.",
- "allZoningNote": "This list covers the other 13 schools proposed to close (James John School is covered above) and the 10 schools that would receive their students. Zoning and ownership come from county property records on PortlandMaps and reflect the main tax lot for each school.",
+ "jjZoningText": "James John School is the only school on the closure list with commercial zoning. Its property is zoned CM2 (commercial mixed use) and RM2 (multi-dwelling residential), reflecting its place facing a street lined with businesses in the middle of downtown St. Johns.",
  "bizSourceNote": "Based on OpenStreetMap and an updated list from the St. Johns Boosters business association, October 2026. The Boosters have 184 member accounts, and many St. Johns businesses, including home-based businesses and the roughly 100 makers at Workshop St. Johns, aren't listed individually here. Spotted a business that's missing or has closed? Email info@stjohnsboosters.org and we'll update the list.",
  "researchTitle": "What research says about closing neighborhood schools",
  "researchIntro": "Researchers studying school closures in other communities have found effects that reach well beyond the classroom.",
@@ -2051,7 +2048,7 @@ function editorHtml(){
   var quotes = (d.quotes || []).map(function(x){ return x.q + (x.who ? '\n\u2014 ' + x.who : ''); }).join('\n\n');
   var h = '<div class="editor"><h2 style="font-size:1.5rem">Edit page</h2><p class="msg">Only you can see this panel. Changes go live when you publish.</p>';
   h += '<div class="row"><label for="e-title">Headline</label><input id="e-title" data-k="title" value="' + esc(d.title) + '"></div>';
-  h += ta('subtitle', 'Subheadline') + ta('intro', 'Introduction') + ta('notice', 'Status note') + ta('heroCaption', 'Photo caption (include photo credit if needed)') + ta('compareNote', 'Note under the closing-schools list') + ta('jjZoningTitle', 'James John zoning: headline') + ta('jjZoningText', 'James John zoning: text') + ta('allZoningTitle', 'Other schools zoning: headline') + ta('allZoningText', 'Other schools zoning: text') + ta('allZoningNote', 'Other schools zoning: note under table');
+  h += ta('subtitle', 'Subheadline') + ta('intro', 'Introduction') + ta('notice', 'Status note') + ta('heroCaption', 'Photo caption (include photo credit if needed)') + ta('compareNote', 'Note under the closing-schools list') + ta('jjZoningTitle', 'James John zoning: headline') + ta('jjZoningText', 'James John zoning: text');
   h += '<div class="row"><label for="e-quotes">Business owner quotes (blank line between quotes; put the name on its own line starting with \u2014)</label><textarea id="e-quotes" data-quotes style="min-height:140px">' + esc(quotes) + '</textarea></div>';
   h += '<div class="two"><div class="row"><label for="e-sv">Owners surveyed</label><input id="e-sv" type="number" data-n="surveyed" value="' + esc(d.surveyed == null ? '' : d.surveyed) + '"></div><div class="row"><label for="e-el">Of those, expect to lose sales</label><input id="e-el" type="number" data-n="expectLoss" value="' + esc(d.expectLoss == null ? '' : d.expectLoss) + '"></div></div>';
   h += ta('quotesIntro', 'Text shown before any quotes are added') + ta('surveyText', 'Survey invitation text') + '<div class="row"><label for="e-surl">Survey link</label><input id="e-surl" data-k="surveyUrl" value="' + esc(d.surveyUrl) + '"></div>' + ta('questionsTitle', 'Questions: headline') + ta('questionsIntro', 'Questions: intro') + ta('questions', 'Questions (one per line)') + ta('ctaQuote', 'Quote above What you can do') + ta('ctaQuoteBy', 'Quote attribution') + ta('cta', 'What you can do: intro') + ta('method', 'How the numbers were gathered') + ta('about', 'About this page') + '<div class="row"><label for="e-ce">Contact email</label><input id="e-ce" data-k="contactEmail" value="' + esc(d.contactEmail) + '"></div>';
@@ -2071,7 +2068,7 @@ function render(){
   if (editing && draft) h += editorHtml();
   h += statsHtml() + '</div></header><main>';
   setTimeout(function(){ var im = document.querySelector('#hero img'); if (im) { var hide = function(){ var f = document.getElementById('hero'), g = document.getElementById('herogrid'); if (f) f.style.display = 'none'; if (g) g.classList.add('nophoto'); }; if (im.complete && !im.naturalWidth) hide(); else im.addEventListener('error', hide); } }, 0);
-  h += businessesHtml() + rankHtml() + researchHtml() + jjZoningHtml() + allZoningHtml() + voicesHtml();
+  h += businessesHtml() + rankHtml() + researchHtml() + jjZoningHtml() + voicesHtml();
   h += questionsHtml();
   if (state.cta) h += '<section class="band"><div class="wrap"><h2>What you can do</h2>' + (state.ctaQuote ? '<blockquote class="ctaq"><p>\u201c' + esc(state.ctaQuote) + '\u201d</p>' + (state.ctaQuoteBy ? '<footer>' + esc(state.ctaQuoteBy) + '</footer>' : '') + '</blockquote>' : '') + '<p class="sub" style="color:var(--ink);font-size:1.1rem">' + esc(state.cta) + '</p>' + actionsHtml() + '</div></section>';
   h += '</main><footer class="page"><div class="wrap"><h2 style="font-size:1.3rem;color:var(--ink)">How these numbers were gathered</h2><p class="method">' + esc(state.method) + '</p>' + tableHtml();
