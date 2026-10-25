@@ -185,6 +185,23 @@ footer.page ul{padding-left:1.1em;margin:8px 0 0}
 .actbtn{display:inline-block;margin-top:16px;text-decoration:none}
 #act{scroll-margin-top:20px}
 .statfoot{color:var(--muted);font-size:.84rem;margin:12px 0 0;max-width:80ch}
+.nlist{display:grid;gap:12px;margin-top:22px;max-width:860px}
+.ncard{display:grid;gap:6px;background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--close);border-radius:0 12px 12px 0;padding:16px 20px;text-decoration:none;color:var(--ink)}
+.ncard:hover strong{text-decoration:underline}
+.ncard strong{font-family:"Bricolage Grotesque",sans-serif;font-size:1.15rem;line-height:1.25}
+.nmeta{font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.nsum{color:var(--muted);font-size:.95rem}
+.astrip{background:var(--ink);color:var(--bg);border-radius:16px;padding:22px 24px;display:grid;gap:14px}
+.astrip-t{margin:0;font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.25rem;line-height:1.3}
+.astrip-b{display:flex;flex-wrap:wrap;gap:10px}
+.astrip .btn.primary{background:var(--close);color:var(--close-ink);border-color:var(--close);text-decoration:none}
+.astrip-more{color:var(--bg);font-size:.92rem;opacity:.85}
+.mcta{display:none}
+@media (max-width:700px){
+  .mcta{display:block;position:fixed;left:0;right:0;bottom:0;z-index:20;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line)}
+  .mcta a.btn.primary{display:block;text-align:center;text-decoration:none;background:var(--close);color:var(--close-ink);border-color:var(--close);font-size:1.05rem;padding:12px}
+  body{padding-bottom:76px}
+}
 @media (max-width:560px){.rrow{grid-template-columns:1fr;gap:4px}}
 </style>
 </head>
@@ -1899,7 +1916,35 @@ footer.page ul{padding-left:1.1em;margin:8px 0 0}
   "foot": "* Las comparaciones entre escuelas usan los mismos datos de mapas para cada escuela. Los conteos de James John fueron verificados cuadra por cuadra por St. Johns Boosters."
  },
  "rankSub": "Negocios a cinco minutos a pie de cada escuela que PPS ha propuesto cerrar, contados de la misma manera para cada escuela con datos de mapas de OpenStreetMap.",
- "rankNote": "Una revisión cuadra por cuadra de St. Johns Boosters encontró aún más alrededor de James John: 139 negocios y organizaciones a cinco minutos a pie, 68 de ellos a unas dos cuadras."
+ "rankNote": "Una revisión cuadra por cuadra de St. Johns Boosters encontró aún más alrededor de James John: 139 negocios y organizaciones a cinco minutos a pie, 68 de ellos a unas dos cuadras.",
+ "newsTitle": "James John en las noticias",
+ "news": [
+  {
+   "outlet": "KPTV",
+   "date": "24 de octubre de 2026",
+   "title": "Families protest Portland school closures at district meeting, St. Johns Bridge bike ride (en inglés)",
+   "url": "https://www.kptv.com/2026/10/25/families-protest-portland-school-closures-district-meeting-st-johns-bridge-bike-ride/",
+   "sum": "El Bike Bus de James John encabezó un paseo y una caminata por el puente St. Johns, y las familias dijeron que cerrar la escuela obligaría a los niños a recorrer distancias más largas y perjudicaría a los negocios locales."
+  },
+  {
+   "outlet": "OPB",
+   "date": "7 de octubre de 2026",
+   "title": "Hundreds of students, parents, staff ask Portland to pause school closures (en inglés)",
+   "url": "https://www.opb.org/article/2026/10/06/portland-public-schools-closure-proposals-rightsizing/",
+   "sum": "Funcionarios del distrito dijeron que recomendaron cerrar James John porque Sitton es más accesible, mientras que miembros de la junta preguntaron por los costos de transporte y el impacto fiscal del plan."
+  },
+  {
+   "outlet": "KPTV",
+   "date": "6 de octubre de 2026",
+   "title": "PPS board member, parents react to controversial school closure plan (en inglés)",
+   "url": "https://www.kptv.com/2026/10/07/pps-board-member-parents-react-controversial-school-closure-plan/",
+   "sum": "El presidente de la PTA de James John describió la escuela como el centro de St. Johns, junto a la biblioteca, el centro comunitario y el distrito comercial, y una miembro de la junta advirtió contra dejar zonas de la ciudad sin una escuela en el centro de la comunidad."
+  }
+ ],
+ "stripA": "La superintendente presentará su recomendación el 17 de noviembre. Actúe ahora:",
+ "stripB": "La junta escolar votará el 15 de diciembre. Actúe ahora:",
+ "stripMore": "Vea todas las formas de ayudar, incluidas las próximas reuniones",
+ "mobileCta": "Cómo puede ayudar"
 }</script>
 <script id="app">
 (function(){
@@ -2068,6 +2113,23 @@ function actionsHtml(){
   return h;
 }
 
+function newsHtml(){
+  var Nw = state.news || [];
+  if (!Nw.length) return '';
+  return '<section class="band"><div class="wrap"><h2>' + esc(state.newsTitle) + '</h2><div class="nlist">' + Nw.map(function(n){
+    return '<a class="ncard" href="' + esc(n.url) + '" target="_blank" rel="noopener"><span class="nmeta">' + esc(n.outlet) + ' \u00b7 ' + esc(n.date) + '</span><strong>' + esc(n.title) + '</strong><span class="nsum">' + esc(n.sum) + '</span></a>';
+  }).join('') + '</div></div></section>';
+}
+
+function actionStripHtml(){
+  var A = state.actions || [];
+  var pick = [A[0], A[1], A[3]].filter(Boolean);
+  if (!pick.length) return '';
+  var before = new Date() < new Date('2026-11-18T00:00:00');
+  var txt = before ? state.stripA : state.stripB;
+  return '<section class="band tight"><div class="wrap"><div class="astrip"><p class="astrip-t">' + esc(txt) + '</p><div class="astrip-b">' + pick.map(function(a){ return '<a class="btn primary" href="' + esc(a.url) + '"' + (/^mailto:/.test(a.url) ? '' : ' target="_blank" rel="noopener"') + '>' + esc(a.t) + '</a>'; }).join('') + '</div><a class="astrip-more" href="#act">' + esc(state.stripMore) + ' \u2192</a></div></div></section>';
+}
+
 function voicesHtml(){
   var q = (state.quotes || []).filter(function(x){ return x.q; });
   var h = '<section class="band"><div class="wrap"><h2>Lo que dicen los dueños de negocios de St. Johns</h2>';
@@ -2110,7 +2172,7 @@ function render(){
   if (editing && draft) h += editorHtml();
   h += statsHtml() + '</div></header><main>';
   setTimeout(function(){ var im = document.querySelector('#hero img'); if (im) { var hide = function(){ var f = document.getElementById('hero'), g = document.getElementById('herogrid'); if (f) f.style.display = 'none'; if (g) g.classList.add('nophoto'); }; if (im.complete && !im.naturalWidth) hide(); else im.addEventListener('error', hide); } }, 0);
-  h += rankHtml() + jjZoningHtml() + voicesHtml() + businessesHtml() + researchHtml();
+  h += rankHtml() + jjZoningHtml() + actionStripHtml() + voicesHtml() + newsHtml() + businessesHtml() + researchHtml();
   h += questionsHtml();
   if (state.cta) h += '<section class="band" id="act"><div class="wrap"><h2>Qué puede hacer usted</h2>' + (state.ctaQuote ? '<blockquote class="ctaq"><p>\u201c' + esc(state.ctaQuote) + '\u201d</p>' + (state.ctaQuoteBy ? '<footer>' + esc(state.ctaQuoteBy) + '</footer>' : '') + '</blockquote>' : '') + '<p class="sub" style="color:var(--ink);font-size:1.1rem">' + esc(state.cta) + '</p>' + actionsHtml() + '</div></section>';
   h += '</main><footer class="page"><div class="wrap"><h2 style="font-size:1.3rem;color:var(--ink)">Cómo obtuvimos estas cifras</h2><p class="method">' + esc(state.method) + '</p>' + tableHtml();
@@ -2118,6 +2180,7 @@ function render(){
   if (state.sources && state.sources.length) h += '<p>Fuentes (en inglés)</p><ul>' + state.sources.map(function(s){ return '<li>' + (s.url ? '<a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s.label) + '</a>' : esc(s.label)) + '</li>'; }).join('') + '</ul>';
   if (state.about || state.contactEmail) h += '<div class="about">' + (state.partnerLogo ? '<div class="partner"><img src="' + esc(state.partnerLogo) + '" alt="' + esc(state.partnerAlt) + '" width="72" height="72"><span>' + esc(state.partnerText) + '</span></div>' : '') + (state.about ? '<p><strong>Sobre esta página.</strong> ' + esc(state.about) + '</p>' : '') + (state.contactEmail ? '<p>¿Preguntas, correcciones o quiere ayudar? Escriba a <a href="mailto:' + esc(state.contactEmail) + '">' + esc(state.contactEmail) + '</a>.</p>' : '') + '</div>';
   h += '</div></footer>';
+  if (state.mobileCta) h += '<div class="mcta"><a class="btn primary" href="#act">' + esc(state.mobileCta) + '</a></div>';
   root.innerHTML = h;
   setTimeout(hideBroken, 0);
   window.scrollTo(0, y);
