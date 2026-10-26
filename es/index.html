@@ -83,7 +83,8 @@ p.sub{color:var(--muted);max-width:66ch;margin:12px 0 0}
 .rrow.me .rfill{background:var(--close)}
 .rval{font-variant-numeric:tabular-nums;white-space:nowrap;font-size:.92rem}
 .rrow.zero .rval{color:var(--muted)}
-.voices{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:24px}
+.voices{column-width:300px;column-gap:18px;margin-top:24px}
+.voices blockquote{break-inside:avoid;margin:0 0 18px}
 blockquote{margin:0;background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--close);border-radius:0 12px 12px 0;padding:20px}
 blockquote p{margin:0;font-size:1.08rem}
 blockquote footer{margin-top:10px;color:var(--muted);font-size:.9rem}
@@ -202,6 +203,11 @@ footer.page ul{padding-left:1.1em;margin:8px 0 0}
   .mcta a.btn.primary{display:block;text-align:center;text-decoration:none;background:var(--close);color:var(--close-ink);border-color:var(--close);font-size:1.05rem;padding:12px}
   body{padding-bottom:76px}
 }
+.stats.srv{margin-top:22px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.stats.srv b{font-size:2.2rem}
+.legacy{border-left:5px solid var(--close);background:var(--surface);border-radius:0 14px 14px 0;padding:20px 24px;max-width:860px}
+.legacy h3{font-size:1.3rem;margin-bottom:8px}
+.legacy p{margin:0}
 @media (max-width:560px){.rrow{grid-template-columns:1fr;gap:4px}}
 </style>
 </head>
@@ -209,11 +215,56 @@ footer.page ul{padding-left:1.1em;margin:8px 0 0}
 <div id="root"></div>
 <script type="application/json" id="data">{
  "title": "La escuela James John es el corazón del centro de St. Johns",
- "intro": "La escuela James John está en pleno centro de St. Johns, a pocos pasos de las tiendas, cafés y restaurantes de las calles Lombard, Ivanhoe y Leavitt. Cada día escolar, cientos de familias caminan por el distrito comercial de ida y vuelta a la escuela. Las Escuelas Públicas de Portland (PPS) han propuesto cerrar la escuela James John, y ninguna otra escuela de la lista de cierres está tan entrelazada con el distrito comercial de su vecindario como James John.",
+ "intro": "La escuela James John está en pleno centro de St. Johns, a pocos pasos de las tiendas, cafés y restaurantes de las calles Lombard, Ivanhoe y Leavitt. Cada día escolar, las familias caminan y van en bicicleta a la escuela por el distrito comercial. Las Escuelas Públicas de Portland (PPS) han propuesto cerrar la escuela James John, y ninguna otra escuela de la lista de cierres está tan entrelazada con el distrito comercial de su vecindario como James John.",
  "notice": "PPS publicó sus propuestas de cierre el 5 de octubre de 2026. La escuela James John está en la lista en ambos escenarios. La superintendente presentará su recomendación final el 17 de noviembre, y la junta escolar votará el 15 de diciembre. Los cierres aprobados entrarían en vigor en el otoño de 2027.",
- "compareNote": "Las escuelas Sellwood Middle y Buckman también tienen negocios a cinco minutos a pie, pero ambas están en cuadras residenciales, con los negocios más cercanos a varias cuadras de distancia. Muchos de los vecinos de Buckman, como Revolution Hall, atraen visitantes de toda la ciudad y seguirán activos con o sin la escuela. El centro de St. Johns sirve principalmente a su propio vecindario, por lo que las familias que caminan a la escuela James John son parte de su vida diaria.",
+ "compareNote": "Las escuelas Sellwood Middle y Buckman también tienen negocios a cinco minutos a pie, pero ambas están en cuadras residenciales, sin negocios a unas dos cuadras. Muchos de los vecinos de Buckman, como Revolution Hall, atraen visitantes de toda la ciudad y seguirán activos con o sin la escuela. El centro de St. Johns sirve en gran parte a su propio vecindario, por lo que las familias que caminan a la escuela James John son parte de su vida diaria.",
  "quotesIntro": "Estamos hablando con los dueños de negocios alrededor de la escuela James John sobre lo que la escuela significa para ellos. Sus palabras aparecerán aquí.",
- "quotes": [],
+ "quotes": [
+  {
+   "q": "Es el corazón del distrito comercial. Quitarla es como desgarrar el tejido de la comunidad.",
+   "who": "Dueño o dueña de negocio en St. Johns (traducción del inglés)"
+  },
+  {
+   "q": "Vibe ha ofrecido programas después de clases en James John, y muchos niños de James John vienen a nuestras clases, campamentos y talleres. Hemos trabajado en numerosos proyectos de arte con la escuela, incluido este año un proyecto de arte sobre la historia BIPOC de St. Johns.",
+   "who": "Laura Streib, Vibe of Portland (traducción del inglés)"
+  },
+  {
+   "q": "James John es el corazón de nuestra comunidad y una gran parte de lo que hace tan especial a St. Johns. Tener familias en el vecindario y mucho tráfico peatonal en nuestro centro ha ayudado enormemente a mi negocio.",
+   "who": "Dueño o dueña de negocio en St. Johns (traducción del inglés)"
+  },
+  {
+   "q": "¡Significa todo! Significa que tenemos un distrito comercial caminable mezclado con un vecindario residencial. Los padres de este vecindario llevan a sus hijos a pie a la escuela y de regreso. Todos convivimos. Hacemos amistades. Construimos relaciones duraderas con las familias. ¡Se convierten en clientes!",
+   "who": "Dueño o dueña de negocio en St. Johns (traducción del inglés)"
+  },
+  {
+   "q": "La escuela James John es una parte importante de lo que hace que St. Johns se sienta como un verdadero vecindario, no solo un distrito comercial. La presencia de niños y familias trae vida, conexión y un sentido de responsabilidad compartida a nuestras calles. … Vemos la escuela como un ancla que ayuda a mantener a St. Johns vibrante, conectado y familiar.",
+   "who": "Dueño o dueña de negocio en St. Johns (traducción del inglés)"
+  },
+  {
+   "q": "La comunidad contribuye a la escuela, y los estudiantes y las familias contribuyen a los negocios locales. Muchos negocios existen para apoyar a estudiantes y familias con cuidado después de la escuela, actividades, etc.",
+   "who": "Dueño o dueña de negocio en St. Johns (traducción del inglés)"
+  },
+  {
+   "q": "Es un pilar de la comunidad. Está frente a la biblioteca. Está en nuestro distrito comercial central. Los negocios locales reciben apoyo gracias a la escuela. El patio de juegos es como un parque comunitario.",
+   "who": "Dueño o dueña de negocio en St. Johns (traducción del inglés)"
+  },
+  {
+   "q": "La escuela James John atrae familias a St. Johns. Si perdemos la escuela, la población y el valor de las propiedades bajan, lo que se traduce en menos gasto en el distrito comercial.",
+   "who": "Dueño o dueña de negocio en St. Johns (traducción del inglés)"
+  },
+  {
+   "q": "Abrí mi tienda en St. Johns para estar a un par de minutos a pie de James John cuando mis hijos estudiaban ahí.",
+   "who": "Dueño o dueña de negocio en St. Johns (traducción del inglés)"
+  },
+  {
+   "q": "Crecí en Arbor Lodge en los años 80 y 90 y recuerdo lo dañina que fue para el vecindario la escuela Kenton cerrada. … Cerrar James John tendría sin duda un impacto negativo en el distrito comercial y en nuestro vecindario en general.",
+   "who": "Dueño o dueña de negocio en St. Johns (traducción del inglés)"
+  },
+  {
+   "q": "Quitar un ancla del distrito comercial del vecindario debilitará el trabajo que hacen los Boosters y otros dueños de negocios. Es absolutamente devastador.",
+   "who": "Dueño o dueña de negocio en St. Johns (traducción del inglés)"
+  }
+ ],
  "surveyed": null,
  "expectLoss": null,
  "cta": "Cada voz cuenta, y la junta votará el 15 de diciembre. Así puede ayudar a mantener abierta la escuela James John.",
@@ -261,11 +312,15 @@ footer.page ul{padding-left:1.1em;margin:8px 0 0}
    "url": "https://www.future-ed.org/a-cautionary-tale-about-school-closings/"
   },
   {
-   "label": "Advancement Project: Stop Closing Public Schools Action Kit (2024)",
+   "label": "Advancement Project: school closure action kit",
    "url": ""
+  },
+  {
+   "label": "PortlandMaps: registros de permisos de 7439 N Charleston Ave (mejoras ADA, permisos 2023-039053, -039150, -039270)",
+   "url": "https://www.portlandmaps.com/"
   }
  ],
- "updated": "21 de octubre de 2026",
+ "updated": "26 de octubre de 2026",
  "businesses": [
   {
    "n": "45th Parallel Wines",
@@ -1673,7 +1728,7 @@ footer.page ul{padding-left:1.1em;margin:8px 0 0}
   },
   {
    "h": "Las escuelas impulsan la actividad comercial local",
-   "t": "Un estudio de pueblos de Nueva York encontró que las comunidades con escuelas tenían más actividad comercial y valores de propiedad más altos que las que no las tenían, porque el gasto de estudiantes, personal y la escuela misma llega a los negocios locales.",
+   "t": "Un estudio de pueblos rurales de Nueva York encontró que las comunidades con escuelas tenían más actividad comercial y valores de propiedad más altos que las que no las tenían. El gasto de estudiantes, personal y la escuela misma apoya a los negocios cercanos.",
    "src": "Thomas A. Lyson, Journal of Research in Rural Education, 2002",
    "url": "https://jrre.psu.edu/sites/default/files/2019-08/17-3_1.pdf"
   },
@@ -1685,7 +1740,7 @@ footer.page ul{padding-left:1.1em;margin:8px 0 0}
   },
   {
    "h": "Los vecindarios pierden familias",
-   "t": "En Chicago, los vecindarios de mayoría afroamericana donde cerraron escuelas en 2013 perdieron residentes al triple del ritmo de vecindarios similares cuyas escuelas siguieron abiertas: 9.2 % frente a 3.2 %. Los analistas señalan que esto no demuestra que los cierres causaran la disminución, pero tener una escuela cerca de casa es una razón importante para que las familias se queden.",
+   "t": "En Chicago, los vecindarios de mayoría afroamericana donde cerraron escuelas en 2013 perdieron residentes al triple del ritmo de vecindarios similares cuyas escuelas siguieron abiertas: 9.2 % frente a 3.2 %. Los analistas señalan que esto no demuestra que los cierres causaran la disminución, pero tener una escuela cerca de casa atrae a las familias.",
    "src": "Chicago Sun-Times and WBEZ analysis, via FutureEd, 2024",
    "url": "https://www.future-ed.org/a-cautionary-tale-about-school-closings/"
   },
@@ -1725,7 +1780,7 @@ footer.page ul{padding-left:1.1em;margin:8px 0 0}
  "ctaQuoteBy": "Mary Filardo, directora ejecutiva, 21st Century School Fund (traducción)",
  "questionsTitle": "Las preguntas que le hacemos a las Escuelas Públicas de Portland",
  "questionsIntro": "La guía para familias del distrito no responde estas preguntas. St. Johns merece respuestas antes de que vote la junta.",
- "questions": "¿Qué es exactamente lo que todavía no es accesible en la escuela James John, que ya tiene rampas, elevador y baños accesibles? ¿Cuánto costaría arreglarlo?\n¿Cuáles son las calificaciones de condición del edificio y de riesgo sísmico de James John y Sitton, y las publicará el distrito?\n¿Cuánto ahorraría realmente cerrar James John cada año, tomando en cuenta el transporte, los cambios en Sitton y el mantenimiento o la venta del edificio?\n¿Consideró el distrito el papel que tiene James John en su comunidad, incluido el distrito comercial de St. Johns, al decidir qué escuelas cerrar?\n¿Ha completado el distrito un análisis de equidad de este cierre, desglosado por raza, ingresos, discapacidad y estudiantes de inglés?\nSi James John cierra, ¿cuál es el plan para el edificio y cómo participarán los residentes de St. Johns en esa decisión?",
+ "questions": "En 2023, PPS solicitó permisos para mejoras de accesibilidad (ADA) en James John, incluidos nuevos pasamanos en las escaleras y una plataforma elevadora en el auditorio, y la obra aprobó la inspección final de la ciudad en junio de 2025. ¿Qué es exactamente lo que todavía no es accesible en James John, que además tiene rampas, elevador y baños accesibles, y cuánto costaría arreglarlo?\n¿Cuáles son las calificaciones de condición del edificio y de riesgo sísmico de James John y Sitton, y las publicará el distrito?\n¿Cuánto ahorraría realmente cerrar James John cada año, tomando en cuenta el transporte, los cambios en Sitton y el mantenimiento o la venta del edificio?\n¿Consideró el distrito el papel que tiene James John en su comunidad, incluido el distrito comercial de St. Johns, al decidir qué escuelas cerrar?\n¿Ha completado el distrito un análisis de equidad de este cierre, desglosado por raza, ingresos, discapacidad y estudiantes de inglés?\nSi James John cierra, ¿cuál es el plan para el edificio y cómo participarán los residentes de St. Johns en esa decisión?",
  "surveyUrl": "https://www.surveymonkey.com/r/YPQBGKY",
  "surveyText": "¿Tiene o administra un negocio en St. Johns? Responda nuestra encuesta de cinco minutos (en inglés) y ayude a documentar lo que significaría perder la escuela James John para nuestra economía local.",
  "actions": [
@@ -1897,7 +1952,7 @@ footer.page ul{padding-left:1.1em;margin:8px 0 0}
  "partnerText": "Con el apoyo de St. Johns Boosters",
  "partnerAlt": "Logotipo de St. Johns Boosters",
  "bizHeading": "La vida en el centro de St. Johns",
- "bizSub": "185 negocios y organizaciones forman St. Johns, y 139 están a cinco minutos a pie de la escuela James John: 51 de comida y bebida, 34 tiendas y artesanos, 48 servicios y 6 organizaciones comunitarias, incluida una en la propia escuela.",
+ "bizSub": "Hemos contado 185 negocios y organizaciones en St. Johns, y 139 están a cinco minutos a pie de la escuela James John: 51 de comida y bebida, 34 tiendas y artesanos, 48 servicios y 6 organizaciones comunitarias, incluida una en la propia escuela.",
  "bizSummary": "Ver los {n} negocios y organizaciones",
  "bizChainNote": "Las cadenas y empresas regionales aparecen en gris.",
  "actBtn": "Cómo puede ayudar",
@@ -1944,7 +1999,58 @@ footer.page ul{padding-left:1.1em;margin:8px 0 0}
  "stripA": "La superintendente presentará su recomendación el 17 de noviembre. Actúe ahora:",
  "stripB": "La junta escolar votará el 15 de diciembre. Actúe ahora:",
  "stripMore": "Vea todas las formas de ayudar, incluidas las próximas reuniones",
- "mobileCta": "Cómo puede ayudar"
+ "mobileCta": "Cómo puede ayudar",
+ "quotesLead": "32 negocios de St. Johns respondieron nuestra encuesta, incluidos locales comerciales, negocios en casa, negocios móviles y organizaciones sin fines de lucro. Esto es lo que nos dijeron sobre James John.",
+ "surveyResults": [
+  {
+   "n": "29 de 31",
+   "t": "esperan que el cierre tenga un impacto negativo en su negocio. Ninguno esperaba un impacto positivo."
+  },
+  {
+   "n": "26 de 30",
+   "t": "dicen que tener la escuela abierta aumenta sus ventas. Ninguno dijo que la perjudica."
+  },
+  {
+   "n": "13 de 30",
+   "t": "dicen que al menos una cuarta parte de sus clientes entre semana son familias de escuela primaria."
+  },
+  {
+   "n": "18 de 30",
+   "t": "dicen que los eventos escolares, como conciertos, recaudaciones de fondos y la noche de regreso a clases, les traen clientes."
+  },
+  {
+   "n": "21 de 31",
+   "t": "dicen que su negocio u organización apoya a la escuela."
+  },
+  {
+   "n": "28 de 32",
+   "t": "quieren que St. Johns Boosters abogue para mantener abierta la escuela James John."
+  }
+ ],
+ "concernsTitle": "Sus mayores preocupaciones",
+ "concerns": [
+  {
+   "q": "Nuestra mayor preocupación es la pérdida de un ancla comunitaria importante en el corazón de St. Johns. Las escuelas traen familias, tráfico peatonal y un sentido de responsabilidad compartida a un vecindario. … Cerrar James John significaría perder mucho más que un edificio escolar; cambiaría el carácter de nuestro distrito comercial.",
+   "who": "Dueño o dueña de negocio en St. Johns (traducción del inglés)"
+  },
+  {
+   "q": "Las escuelas son el corazón de nuestra ciudad, y tener acceso real a ellas a pie en nuestros vecindarios es lo que hace que las familias decidan vivir aquí y quedarse. Ni siquiera soy madre ni padre, y sé que esto sería muy perjudicial para la comunidad y la economía local, incluidos pequeños negocios como el mío.",
+   "who": "Dueño o dueña de negocio en St. Johns (traducción del inglés)"
+  },
+  {
+   "q": "Como madre o padre, esto significa salones saturados y que mi hijo no pueda caminar a la escuela. … Esto podría significar que nos mudemos de la ciudad y llevemos tanto mi negocio como mis impuestos personales a Lake Oswego.",
+   "who": "Dueño o dueña de negocio en St. Johns (traducción del inglés)"
+  },
+  {
+   "q": "Mi mayor preocupación … es que el edificio quede vacío por décadas. … ¿Cómo afectará la pérdida de una escuela céntrica a las futuras familias que piensen mudarse a la zona?",
+   "who": "Dueño o dueña de negocio en St. Johns (traducción del inglés)"
+  }
+ ],
+ "futureTitle": "Si la escuela cerrara",
+ "futureText": "También preguntamos qué debería pasar con el terreno si James John cerrara. De los 24 negocios que respondieron, 7 dijeron simplemente que debe seguir siendo una escuela, y 8 quieren que siga siendo un espacio comunitario, como un centro comunitario, un parque, un centro cultural o un mercado público. Varios temían que el edificio quedara vacío.",
+ "legacyTitle": "Un legado de más de un siglo",
+ "legacyText": "Cuando el fundador de St. Johns, James John, murió en 1886, su testamento dejó tierras y dinero para construir una escuela pública “abierta a los niños” de St. Johns. La escuela secundaria James John abrió en esa tierra en 1911, en lo que hoy es el patio de juegos de la escuela James John. El edificio actual, que lleva el nombre del fundador desde 1929, es elegible para el Registro Nacional de Lugares Históricos, según la propia evaluación histórica de las Escuelas Públicas de Portland.",
+ "legacySrc": "Fuentes (en inglés): Wikipedia, “James John” y “James John Elementary School”; PPS Historic Building Assessment, 2009"
 }</script>
 <script id="app">
 (function(){
@@ -2130,11 +2236,22 @@ function actionStripHtml(){
   return '<section class="band tight"><div class="wrap"><div class="astrip"><p class="astrip-t">' + esc(txt) + '</p><div class="astrip-b">' + pick.map(function(a){ return '<a class="btn primary" href="' + esc(a.url) + '"' + (/^mailto:/.test(a.url) ? '' : ' target="_blank" rel="noopener"') + '>' + esc(a.t) + '</a>'; }).join('') + '</div><a class="astrip-more" href="#act">' + esc(state.stripMore) + ' \u2192</a></div></div></section>';
 }
 
+function legacyHtml(){
+  if (!state.legacyText) return '';
+  return '<section class="band tight"><div class="wrap"><div class="legacy"><h3>' + esc(state.legacyTitle) + '</h3><p>' + esc(state.legacyText) + '</p>' + (state.legacySrc ? '<p class="note" style="margin:8px 0 0">' + esc(state.legacySrc) + '</p>' : '') + '</div></div></section>';
+}
+
 function voicesHtml(){
   var q = (state.quotes || []).filter(function(x){ return x.q; });
   var h = '<section class="band"><div class="wrap"><h2>Lo que dicen los dueños de negocios de St. Johns</h2>';
+  if (q.length && state.quotesLead) h += '<p class="sub">' + esc(state.quotesLead) + '</p>';
+  var SR = state.surveyResults || [];
+  if (SR.length) h += '<div class="stats srv">' + SR.map(function(r){ return '<div class="stat"><b>' + esc(r.n) + '</b><span>' + esc(r.t) + '</span></div>'; }).join('') + '</div>';
   if (!q.length) h += '<div class="placeholder">' + esc(state.quotesIntro) + '</div>';
   else h += '<div class="voices">' + q.map(function(x){ return '<blockquote><p>\u201c' + esc(x.q) + '\u201d</p>' + (x.who ? '<footer>' + esc(x.who) + '</footer>' : '') + '</blockquote>'; }).join('') + '</div>';
+  var C = state.concerns || [];
+  if (C.length) h += '<h3 class="gallery-h">' + esc(state.concernsTitle) + '</h3><div class="voices">' + C.map(function(x){ return '<blockquote><p>\u201c' + esc(x.q) + '\u201d</p>' + (x.who ? '<footer>' + esc(x.who) + '</footer>' : '') + '</blockquote>'; }).join('') + '</div>';
+  if (state.futureText) h += '<h3 class="gallery-h">' + esc(state.futureTitle) + '</h3><p class="sub" style="color:var(--ink)">' + esc(state.futureText) + '</p>';
   if (state.surveyUrl) h += '<div class="survey"><p>' + esc(state.surveyText) + '</p><a class="btn primary" href="' + esc(state.surveyUrl) + '" target="_blank" rel="noopener">Responder la encuesta</a></div>';
   return h + '</div></section>';
 }
@@ -2172,7 +2289,7 @@ function render(){
   if (editing && draft) h += editorHtml();
   h += statsHtml() + '</div></header><main>';
   setTimeout(function(){ var im = document.querySelector('#hero img'); if (im) { var hide = function(){ var f = document.getElementById('hero'), g = document.getElementById('herogrid'); if (f) f.style.display = 'none'; if (g) g.classList.add('nophoto'); }; if (im.complete && !im.naturalWidth) hide(); else im.addEventListener('error', hide); } }, 0);
-  h += rankHtml() + jjZoningHtml() + actionStripHtml() + voicesHtml() + newsHtml() + businessesHtml() + researchHtml();
+  h += rankHtml() + jjZoningHtml() + legacyHtml() + actionStripHtml() + voicesHtml() + newsHtml() + businessesHtml() + researchHtml();
   h += questionsHtml();
   if (state.cta) h += '<section class="band" id="act"><div class="wrap"><h2>Qué puede hacer usted</h2>' + (state.ctaQuote ? '<blockquote class="ctaq"><p>\u201c' + esc(state.ctaQuote) + '\u201d</p>' + (state.ctaQuoteBy ? '<footer>' + esc(state.ctaQuoteBy) + '</footer>' : '') + '</blockquote>' : '') + '<p class="sub" style="color:var(--ink);font-size:1.1rem">' + esc(state.cta) + '</p>' + actionsHtml() + '</div></section>';
   h += '</main><footer class="page"><div class="wrap"><h2 style="font-size:1.3rem;color:var(--ink)">Cómo obtuvimos estas cifras</h2><p class="method">' + esc(state.method) + '</p>' + tableHtml();
