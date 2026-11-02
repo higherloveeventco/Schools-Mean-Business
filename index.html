@@ -209,13 +209,26 @@ footer.page ul{padding-left:1.1em;margin:8px 0 0}
 .legacy h3{font-size:1.3rem;margin-bottom:8px}
 .legacy p{margin:0}
 @media (max-width:560px){.rrow{grid-template-columns:1fr;gap:4px}}
+.voices{columns:auto;column-width:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:20px;align-items:stretch}
+.voices blockquote{margin:0;display:flex;flex-direction:column}
+.voices blockquote footer{margin-top:auto;padding-top:10px}
+.gallery{columns:auto;column-width:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:14px}
+.gallery figure{margin:0;display:flex;flex-direction:column}
+.gallery figure:first-child{grid-column:span 2}
+.gallery img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:center}
+.gallery figure:first-child img{aspect-ratio:auto;height:100%;max-height:none;flex:1}
+@media (max-width:720px){.gallery{grid-template-columns:repeat(2,1fr)}.gallery figure:first-child img{aspect-ratio:4/3;height:auto}}
+.citygrid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:18px}
+@media (max-width:720px){.citygrid{grid-template-columns:1fr}}
+.gallery img,.gallery figure:first-child img{aspect-ratio:auto;height:210px;max-height:none;flex:none;object-fit:cover}
+@media (max-width:720px){.gallery img,.gallery figure:first-child img{height:150px}}
 </style>
 </head>
 <body>
 <div id="root"></div>
 <script type="application/json" id="data">{
  "title": "James John School is the heart of downtown St. Johns",
- "intro": "James John School sits in the middle of downtown St. Johns, a few steps from the shops, cafes, and restaurants along Lombard, Ivanhoe, and Leavitt. Every school day, families walk and bike to school through the business district. Portland Public Schools has proposed closing James John School, and no other school on the closure list is woven into its neighborhood's business district the way James John School is.",
+ "intro": "James John School sits in the middle of downtown St. Johns, a few steps from the shops, cafes, and restaurants along Lombard, Ivanhoe, and Leavitt. Every school day, families walk and bike to school through the business district. Portland Public Schools has proposed closing James John School, and it is the only school on the closure list zoned for commercial use, in the middle of a business district.",
  "notice": "PPS released its closure proposals on October 5, 2026. James John School is on the list in both scenarios. The superintendent presents her final recommendation on November 17, and the school board votes on December 15. Approved closures would take effect in fall 2027.",
  "compareNote": "Sellwood Middle and Buckman also have businesses within a five-minute walk, but both schools sit in residential blocks, with no businesses within about two blocks. Many of Buckman's neighbors, like Revolution Hall, draw visitors from across the city and will stay busy regardless of the school. Downtown St. Johns largely serves its own neighborhood, which makes the families walking to James John School an everyday part of its life.",
  "quotesIntro": "We're talking with business owners around James John School about what the school means to them. Their words will appear here.",
@@ -226,7 +239,7 @@ footer.page ul{padding-left:1.1em;margin:8px 0 0}
   },
   {
    "q": "Families frequent local businesses daily, stopping for coffee, meals, groceries, and other goods and services as part of their school-day routines. … Losing the school would mean losing not only a source of daily customers, but also an important part of the community fabric that helps sustain and distinguish this business district.",
-   "who": "St. Johns business owner"
+   "who": "Descansa Property Management"
   },
   {
    "q": "We are a small restaurant. The school staff comes by on their breaks daily. Parents and students stop by before and after school.",
@@ -238,23 +251,19 @@ footer.page ul{padding-left:1.1em;margin:8px 0 0}
   },
   {
    "q": "Vibe has offered after school programming at James John, and a lot of kids from JJ come to our classes, camps, and workshops. We have worked on numerous art projects with the school, including a BIPOC history of St. Johns art project this year.",
-   "who": "Laura Streib, Vibe of Portland"
+   "who": "Vibe of Portland"
   },
   {
    "q": "James John is the heart of our community and a huge part of what makes St. Johns so special. Having families in the neighborhood and lots of foot traffic through our downtown has helped my business enormously.",
-   "who": "St. Johns business owner"
+   "who": "Independent stylist, The Nest Hair Loft"
   },
   {
    "q": "It means everything! It means we have a walkable business district intermingled with a residential neighborhood. Parents in this neighborhood walk their kids to and from school. We all interact. We make friendships. We build lasting relationships with families. They become customers!",
-   "who": "St. Johns business owner"
+   "who": "Hound & Hare Vintage"
   },
   {
    "q": "I opened up my store in St. Johns so that I could be within a couple minutes’ walk to James John when my children were there.",
-   "who": "St. Johns business owner"
-  },
-  {
-   "q": "JJ Elementary attracts families to St. Johns. If we lose the school, population and property values fall, which translates to less spending in the business district.",
-   "who": "St. Johns business owner"
+   "who": "RōM"
   },
   {
    "q": "Removing an anchor from the neighborhood business district will weaken the work that the Boosters and other business owners do. It’s absolutely crushing.",
@@ -1793,12 +1802,12 @@ footer.page ul{padding-left:1.1em;margin:8px 0 0}
    "url": "https://www.future-ed.org/a-cautionary-tale-about-school-closings/"
   }
  ],
- "researchNote": "Research on how closures affect neighborhoods is still limited, much of it comes from other cities or rural communities, and results vary from place to place. That's why we're also gathering direct input from St. Johns business owners.",
+ "researchNote": "Research on how closures affect neighborhoods is still limited, and much of it comes from other cities. That’s why we’re also gathering direct input from St. Johns business owners.",
  "ctaQuote": "The reason you involve the community is because you want to make better decisions.",
  "ctaQuoteBy": "Mary Filardo, executive director, 21st Century School Fund",
  "questionsTitle": "Questions we're asking Portland Public Schools",
  "questionsIntro": "The district's family guide doesn't answer these. St. Johns deserves answers before the board votes.",
- "questions": "Did the district consider the role James John plays in its community, including the St. Johns business district, when deciding which schools to close?\nIf James John closes, what is the plan for the building, and how will St. Johns residents be involved in that decision?\nHow much would closing James John actually save each year, after accounting for transportation, changes at Sitton, and maintaining or selling the building?\nIn 2023, PPS filed permits for ADA upgrades at James John, including new stair handrails and an auditorium platform lift, and the work passed final city inspection in June 2025. What specifically is still inaccessible at James John, which also has ramps, an elevator, and accessible restrooms, and what would it cost to fix?",
+ "questions": "In 2023, PPS filed permits for ADA upgrades at James John, including new stair handrails and an auditorium platform lift, and the work passed final city inspection in June 2025. PPS cited accessibility in choosing James John for closure. What specifically is still inaccessible at James John, and what would it cost to fix?\nDid the district consider the role James John plays in its community, including the St. Johns business district, when deciding which schools to close?\nIf James John closes, what is the plan for the building, and how will St. Johns residents be involved in that decision?\nHow much would closing James John actually save each year, after accounting for transportation, changes at Sitton, and maintaining or selling the building?",
  "surveyUrl": "",
  "surveyText": "Own or manage a business in St. Johns? Take our five-minute survey and help document what losing James John School would mean for our local economy.",
  "actions": [
@@ -2056,7 +2065,7 @@ footer.page ul{padding-left:1.1em;margin:8px 0 0}
  "concerns": [
   {
    "q": "Our biggest concern is the loss of an important community anchor in the heart of St. Johns. Schools bring families, foot traffic, and a sense of shared responsibility to a neighborhood. … Closing James John would mean losing much more than a school building; it would change the character of our business district.",
-   "who": "St. Johns business owner"
+   "who": "Weddinglandia"
   },
   {
    "q": "St. Johns is surrounded by rivers, so making families drive to commute to other schools will push families out of the area.",
@@ -2068,7 +2077,7 @@ footer.page ul{padding-left:1.1em;margin:8px 0 0}
   }
  ],
  "futureTitle": "If the school closed",
- "futureText": "We also asked what should happen to the site if James John closed. Of the 24 businesses that answered, 7 said simply that it should stay a school, and 8 wanted it to remain a community space, such as a community center, park, cultural center, or public market. Several worried the building would sit empty.",
+ "futureText": "We also asked what should happen to the site if James John closed. Most businesses wanted it to stay a school or remain in community use, such as a community center, park, cultural center, or public market. Several worried the building would sit empty in the middle of downtown.",
  "legacyTitle": "A legacy more than a century old",
  "legacyText": "St. Johns founder James John left his entire estate in a “permanent and perpetual” trust for free public schools for St. Johns children. In 1932, the Portland school board became trustee of what remained and pledged to use it only for St. Johns schoolchildren. Today, PPS has proposed closing the school that carries his name.",
  "legacySrc": "",
@@ -2079,7 +2088,7 @@ footer.page ul{padding-left:1.1em;margin:8px 0 0}
  "decisions": [
   {
    "q": "My lease is up in a year and a half. If this closure significantly reduces my customers, I will have no choice but to not renew my lease.",
-   "who": "St. Johns business owner"
+   "who": "Hound & Hare Vintage"
   },
   {
    "q": "I would have to reduce my hours and staffing if business decreases.",
@@ -2095,11 +2104,11 @@ footer.page ul{padding-left:1.1em;margin:8px 0 0}
   },
   {
    "q": "The lack of parents grabbing a coffee after drop-off next door would lead to fewer people just walking by my shop, and overall sales would go down. … Staffing would go first, and moving as a last resort.",
-   "who": "St. Johns business owner"
+   "who": "RōM"
   },
   {
    "q": "We run camps for kids, and the closure would complicate transportation to and from our business.",
-   "who": "St. Johns business owner"
+   "who": "Tinker Camp"
   }
  ],
  "whyTitle": "Why James John matters to downtown",
@@ -2124,21 +2133,22 @@ footer.page ul{padding-left:1.1em;margin:8px 0 0}
  "cityPoints": [
   {
    "h": "Ask for an economic impact analysis",
-   "t": "No published analysis shows how closing James John would affect the businesses around it. City leaders can ask PPS to study the impact on downtown St. Johns before the vote, and ask Prosper Portland to help assess it."
+   "t": "No published analysis shows how closing James John would affect the businesses around it. City leaders can ask PPS to study the impact on downtown St. Johns before the vote, and ask Prosper Portland, the city’s economic development agency, to help assess it."
   },
   {
    "h": "Press for a commitment on the building",
    "t": "If the school closes, its building and grounds would sit at the center of downtown. PPS says the future use of closed schools is still to be determined. City leaders can ask for a public commitment that James John stays in active community use rather than sitting empty."
   },
   {
-   "h": "Weigh the city’s own plans for St. Johns",
-   "t": "The city has long planned St. Johns as a walkable town center, with safer walking and biking routes around the school. City leaders can ask that those plans, and the small businesses they support, be part of the district’s decision."
+   "h": "Weigh the health of downtown",
+   "t": "Downtown St. Johns depends on everyday foot traffic from people who live and walk nearby, and James John brings families into the business district every school day. City leaders can ask that the health of this business district, and the small businesses in it, be part of the district’s decision."
   },
   {
    "h": "Make your voice heard",
    "t": "A letter from city leaders to the school board and superintendent before the November 17 recommendation would carry real weight."
   }
- ]
+ ],
+ "quotesTitle": "In their own words"
 }</script>
 <script id="app">
 (function(){
@@ -2328,7 +2338,7 @@ function cityHtml(){
   var P = state.cityPoints || [];
   if (!P.length) return '';
   var h = '<section class="band"><div class="wrap"><h2>' + esc(state.cityTitle) + '</h2>' + (state.cityLead ? '<p class="sub" style="color:var(--ink)">' + esc(state.cityLead) + '</p>' : '');
-  h += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:16px">' + P.map(function(p){ return '<div style="background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--close);border-radius:14px;padding:18px 20px"><h3 style="margin:0 0 8px;font-size:1.1rem">' + esc(p.h) + '</h3><p style="margin:0">' + esc(p.t) + '</p></div>'; }).join('') + '</div>';
+  h += '<div class="citygrid">' + P.map(function(p){ return '<div style="background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--close);border-radius:14px;padding:18px 20px"><h3 style="margin:0 0 8px;font-size:1.1rem">' + esc(p.h) + '</h3><p style="margin:0">' + esc(p.t) + '</p></div>'; }).join('') + '</div>';
   return h + '</div></section>';
 }
 
@@ -2355,7 +2365,7 @@ function voicesHtml(){
   var DC = state.decisions || [];
   if (DC.length) h += '<h3 class="gallery-h">' + esc(state.decTitle) + '</h3>' + (state.decLead ? '<p class="sub" style="color:var(--ink)">' + esc(state.decLead) + '</p>' : '') + '<div class="voices">' + DC.map(function(x){ return '<blockquote><p>\u201c' + esc(x.q) + '\u201d</p>' + (x.who ? '<footer>' + esc(x.who) + '</footer>' : '') + '</blockquote>'; }).join('') + '</div>';
   if (!q.length) h += '<div class="placeholder">' + esc(state.quotesIntro) + '</div>';
-  else h += '<div class="voices">' + q.map(function(x){ return '<blockquote><p>\u201c' + esc(x.q) + '\u201d</p>' + (x.who ? '<footer>' + esc(x.who) + '</footer>' : '') + '</blockquote>'; }).join('') + '</div>';
+  else h += (state.quotesTitle ? '<h3 class="gallery-h">' + esc(state.quotesTitle) + '</h3>' : '') + '<div class="voices">' + q.map(function(x){ return '<blockquote><p>\u201c' + esc(x.q) + '\u201d</p>' + (x.who ? '<footer>' + esc(x.who) + '</footer>' : '') + '</blockquote>'; }).join('') + '</div>';
   var C = state.concerns || [];
   if (C.length) h += '<h3 class="gallery-h">' + esc(state.concernsTitle) + '</h3><div class="voices">' + C.map(function(x){ return '<blockquote><p>\u201c' + esc(x.q) + '\u201d</p>' + (x.who ? '<footer>' + esc(x.who) + '</footer>' : '') + '</blockquote>'; }).join('') + '</div>';
   if (state.futureText) h += '<h3 class="gallery-h">' + esc(state.futureTitle) + '</h3><p class="sub" style="color:var(--ink)">' + esc(state.futureText) + '</p>';
@@ -2396,7 +2406,7 @@ function render(){
   if (editing && draft) h += editorHtml();
   h += statsHtml() + '</div></header><main>';
   setTimeout(function(){ var im = document.querySelector('#hero img'); if (im) { var hide = function(){ var f = document.getElementById('hero'), g = document.getElementById('herogrid'); if (f) f.style.display = 'none'; if (g) g.classList.add('nophoto'); }; if (im.complete && !im.naturalWidth) hide(); else im.addEventListener('error', hide); } }, 0);
-  h += voicesHtml() + whyHtml() + jjZoningHtml() + businessesHtml() + actionStripHtml() + newsHtml() + researchHtml() + rankHtml();
+  h += voicesHtml() + whyHtml() + jjZoningHtml() + businessesHtml() + actionStripHtml() + newsHtml() + researchHtml();
   h += questionsHtml() + cityHtml() + legacyHtml();
   if (state.cta) h += '<section class="band" id="act"><div class="wrap"><h2>What you can do</h2>' + (state.ctaQuote ? '<blockquote class="ctaq"><p>\u201c' + esc(state.ctaQuote) + '\u201d</p>' + (state.ctaQuoteBy ? '<footer>' + esc(state.ctaQuoteBy) + '</footer>' : '') + '</blockquote>' : '') + '<p class="sub" style="color:var(--ink);font-size:1.1rem">' + esc(state.cta) + '</p>' + actionsHtml() + '</div></section>';
   h += '</main><footer class="page"><div class="wrap"><h2 style="font-size:1.3rem;color:var(--ink)">How these numbers were gathered</h2><p class="method">' + esc(state.method) + '</p>' + tableHtml();
